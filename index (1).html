@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Balvinder Kaur Dhillon</title>
+<meta name="description" content="Balvinder Kaur Dhillon — student, researcher, and founder at Imperial College London. Building Ocora."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sora:['Sora','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#09090b;color:#e2e8f0;font-family:'Sora',sans-serif;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0}
+.glass-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:20px;transition:all .3s ease}
+.glass-card:hover{background:rgba(255,255,255,0.045);border-color:rgba(125,211,252,0.18);transform:translateY(-3px)}
+.glass-flat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px}
+.accent-text{background:linear-gradient(135deg,#7dd3fc,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.67rem;padding:3px 10px;border-radius:5px;border:1px solid rgba(125,211,252,0.22);color:#7dd3fc;background:rgba(125,211,252,0.06);letter-spacing:.06em;white-space:nowrap}
+.chip-muted{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.67rem;padding:3px 10px;border-radius:5px;border:1px solid rgba(255,255,255,0.09);color:#64748b;letter-spacing:.06em;white-space:nowrap}
+.chip-gold{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.67rem;padding:3px 10px;border-radius:5px;border:1px solid rgba(251,191,36,0.3);color:#fbbf24;background:rgba(251,191,36,0.06);letter-spacing:.06em;white-space:nowrap}
+.stat-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px 24px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;inset:-1px;border-radius:16px;background:linear-gradient(135deg,rgba(125,211,252,.14),rgba(165,180,252,.07),transparent 60%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(9,9,11,0.85);backdrop-filter:blur(24px)}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:.69rem;letter-spacing:.07em;color:#475569;transition:color .2s;text-decoration:none}
+.nav-link:hover,.nav-link.active{color:#e2e8f0}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;color:#475569;text-transform:uppercase}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:6px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.09);color:#64748b;background:transparent;cursor:pointer;transition:all .2s;letter-spacing:.05em}
+.filter-btn:hover,.filter-btn.active{border-color:rgba(125,211,252,.35);color:#7dd3fc;background:rgba(125,211,252,.05)}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#7dd3fc,#a5b4fc);flex-shrink:0;margin-top:5px}
+.sbar{height:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;margin-top:8px}
+.sbar-fill{height:100%;background:linear-gradient(90deg,#7dd3fc,#a5b4fc);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.4,0,.2,1)}
+.sbar-fill.go{transform:scaleX(1)}
+.award-row{display:flex;align-items:flex-start;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.award-row:last-child{border-bottom:none;padding-bottom:0}
+.award-yr{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#334155;min-width:32px;padding-top:3px}
+.mlink{color:#7dd3fc;text-decoration:none;font-size:.875rem;line-height:1.5;border-bottom:1px solid rgba(125,211,252,.2);transition:all .2s;display:inline}
+.mlink:hover{color:#bae6fd;border-bottom-color:rgba(125,211,252,.5)}
+.plink{color:#7dd3fc;text-decoration:none;font-size:.78rem;font-family:'JetBrains Mono',monospace;border-bottom:1px solid rgba(125,211,252,.2);transition:all .2s}
+.plink:hover{color:#bae6fd}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#09090b}
+::-webkit-scrollbar-thumb{background:rgba(125,211,252,.25);border-radius:2px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@media(max-width:768px){.deskNav{display:none!important}.hero-h{font-size:3rem!important}}
+</style>
+</head>
+<body>
+
+<div class="orb" style="width:700px;height:700px;top:-250px;left:-250px;background:rgba(125,211,252,0.04)"></div>
+<div class="orb" style="width:600px;height:600px;bottom:5%;right:-200px;background:rgba(165,180,252,0.05)"></div>
+
+<!-- NAV -->
+<nav>
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:#94a3b8;letter-spacing:.12em">BKD</span>
+    <div class="deskNav" style="display:flex;align-items:center;gap:26px">
+      <a href="#ventures" class="nav-link">Ventures</a>
+      <a href="#research" class="nav-link">Research</a>
+      <a href="#awards" class="nav-link">Awards</a>
+      <a href="#publications" class="nav-link">Publications</a>
+      <a href="#media" class="nav-link">Media</a>
+      <a href="#stack" class="nav-link">Stack</a>
+      <a href="/cdn-cgi/l/email-protection#3654575a405f585253445d574344525e5f5a5a59580776515b575f5a1855595b" style="font-family:'JetBrains Mono',monospace;font-size:.69rem;padding:7px 18px;border-radius:9px;border:1px solid rgba(125,211,252,.3);color:#7dd3fc;transition:all .2s;letter-spacing:.05em;text-decoration:none" onmouseover="this.style.background='rgba(125,211,252,.08)'" onmouseout="this.style.background='transparent'">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:1100px;margin:0 auto;padding:100px 24px 80px;position:relative;z-index:1">
+  <div class="reveal">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px">
+      <span class="chip">Imperial College London</span>
+      <span class="chip">MSc Human &amp; Biological Robotics</span>
+      <span class="chip">Arcadia Impact Research Fellow</span>
+    </div>
+    <h1 class="hero-h" style="font-size:clamp(3rem,7vw,5.5rem);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-bottom:8px">
+      Balvinder<br>Kaur <span class="accent-text">Dhillon</span>
+    </h1>
+    <p style="font-size:clamp(.95rem,2vw,1.18rem);color:#94a3b8;max-width:620px;line-height:1.75;margin:24px 0 40px;font-weight:300">
+      I'm a student, researcher, and founder based in London — currently building <span style="color:#e2e8f0">Ocora</span> and finishing my MSc at Imperial. I care about making technology that actually works for people, and I've been lucky enough to do that across prosthetics, brain imaging, hyperloop, and global health.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:44px;max-width:700px">
+      <div class="stat-card"><div class="accent-text" style="font-size:1.9rem;font-weight:600;line-height:1">3</div><div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#475569;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5">Ventures<br>Founded</div></div>
+      <div class="stat-card"><div class="accent-text" style="font-size:1.9rem;font-weight:600;line-height:1">£65k+</div><div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#475569;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5">Funding<br>Raised</div></div>
+      <div class="stat-card"><div class="accent-text" style="font-size:1.9rem;font-weight:600;line-height:1">140+</div><div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#475569;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5">People<br>Led</div></div>
+      <div class="stat-card"><div class="accent-text" style="font-size:1.9rem;font-weight:600;line-height:1">4+</div><div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#475569;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5">Years<br>Research</div></div>
+      <div class="stat-card"><div class="accent-text" style="font-size:1.9rem;font-weight:600;line-height:1">2×</div><div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#475569;margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5">'Junior Nobel'<br>Winner</div></div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#ventures" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;background:linear-gradient(135deg,#7dd3fc,#a5b4fc);color:#09090b;font-weight:600;font-size:.875rem;text-decoration:none" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">What I'm building ↓</a>
+      <a href="/cdn-cgi/l/email-protection#88eae9e4fee1e6ecedfae3e9fdfaece0e1e4e4e7e6b9c8efe5e9e1e4a6ebe7e5" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:.875rem;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='rgba(255,255,255,.2)';this.style.color='#e2e8f0'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='#94a3b8'">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Awards &amp; Recognition</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Some things I'm proud of.</h2>
+      <p style="color:#64748b;margin-top:12px;max-width:560px;line-height:1.65;font-size:.95rem">A few recognitions along the way — across research, building, and civic work. The GUA ones are genuinely wild to me still.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:14px">
+      <div class="glass-card reveal" style="padding:28px;border-color:rgba(251,191,36,0.2)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <span class="chip-gold">2025 · Global Undergraduate Awards</span>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:600;margin-bottom:10px;line-height:1.35">Global Winner — 'Junior Nobel Prize'</h3>
+        <p style="color:#64748b;font-size:.85rem;line-height:1.7">Top international submission out of 3,567 first-class papers for a multimodal deep learning system for automated brain tumour analysis. <strong style="color:#94a3b8">First woman to achieve consecutive Global Winner awards in the award's history.</strong></p>
+      </div>
+      <div class="glass-card reveal" style="padding:28px;border-color:rgba(251,191,36,0.2)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <span class="chip-gold">2024 · President of Ireland Patronage</span>
+        </div>
+        <h3 style="font-size:1.05rem;font-weight:600;margin-bottom:10px;line-height:1.35">Global Winner — 'Junior Nobel Prize'</h3>
+        <p style="color:#64748b;font-size:.85rem;line-height:1.7">Selected from 3,941 first-class papers worldwide for dissertation research on bioresorbable drug-eluting stents with organ-on-a-chip validation.</p>
+      </div>
+    </div>
+
+    <div class="glass-flat reveal" style="padding:8px 32px">
+      <div class="award-row">
+        <div class="award-yr">2025</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Posters in Parliament Finalist</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">One of two university projects from 40+ submissions to present at the British Parliament. Served as project founder and lead.</p></div>
+        <span class="chip-muted">National</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2025</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Innovation &amp; Development Honours Award — Queen Mary University</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">Awarded for founding and leading Cybathlon; selected from over 300+ student societies.</p></div>
+        <span class="chip-muted">University-wide</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2025</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Small Group with a Big Impact Award — Queen Mary University</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">University-wide recognition for impactful team-based innovation through Cybathlon.</p></div>
+        <span class="chip-muted">University-wide</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2025</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Runner-Up — Barts &amp; The London Digital Health Hackathon</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">1st Runner-Up among 9 interdisciplinary London-wide teams for a gamified burnout detection app built in 4 hours.</p></div>
+        <span class="chip-muted">London-wide</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2024</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Best Innovator Award — Barts &amp; The London Innovation in Medicine Research Symposium</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">First place among 10+ finalists from London universities for oral presentation on bioresorbable stent research.</p></div>
+        <span class="chip-muted">London-wide</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2024</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Queen Mary Academy SEED Award</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">Top 3 of 72 university-wide applicants for co-developing improvements to the Engineering Design Project module.</p></div>
+        <span class="chip-muted">University-wide</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2023</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">1st Place — MedTech Innovation Programme</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">Led cross-university team of medical students to design a biocompatible pressure sensor for post-surgical infection detection.</p></div>
+        <span class="chip-muted">Cross-university</span>
+      </div>
+      <div class="award-row">
+        <div class="award-yr">2023</div>
+        <div style="flex:1"><h4 style="font-size:.93rem;font-weight:500;margin-bottom:5px">Innovator Award — Bright Network</h4><p style="color:#64748b;font-size:.83rem;line-height:1.6">Awarded to Hyperlink under my leadership — recognised as the most innovative student society in the UK.</p></div>
+        <span class="chip-muted">National</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Research</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">What I spend my time on.</h2>
+      <p style="color:#64748b;margin-top:12px;max-width:520px;line-height:1.65;font-size:.95rem">4+ years across computational neuroscience, medical robotics, deep learning, materials science, and fluid dynamics — usually juggling more than one at once.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">⚡</div>
+        <div class="chip" style="margin-bottom:14px">HD-sEMG · Prosthetics · RL</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">AI-Driven Prosthetic Control</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">CNN–Q-learning and Siamese networks for one-shot HD-sEMG gesture classification. Developed ResNet and AlexNet transfer learning pipelines at the Advanced Robotics Lab, QMUL.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">IEEE TBE (In Review) · IEEE MetroXraine · BMES 2024 · Oxford Workshop</div>
+      </div>
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">🧠</div>
+        <div class="chip" style="margin-bottom:14px">Deep Learning · Neuroimaging</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Multimodal Glioma Analysis</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Multimodal deep learning pipeline for automated glioma subregion segmentation and 3D reconstruction with integrated spatial analysis. Top 1% globally — GUA 2025 winner.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">Global Winner GUA 2025 · NatMedTech 2025 (Top 5 nationally)</div>
+      </div>
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">🫀</div>
+        <div class="chip" style="margin-bottom:14px">PINNs · Cardiac Electrophysiology</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Physics-Informed Neural Networks</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Optimised PINN architecture for cardiac signal propagation prediction, achieving Dice scores of 0.96. Applied to personalised atrial fibrillation treatment at DERI, QMUL.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">MICCAI StatCom · IOP Physics-ML 2025</div>
+      </div>
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">💊</div>
+        <div class="chip" style="margin-bottom:14px">Materials · Biomechanics · CFD</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Bioresorbable Drug-Eluting Stents</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Bioresorbable drug-eluting stent with organ-on-a-chip validation at William Harvey Research Institute. CFD simulations in MATLAB. Top 1% globally; Best Innovator Award.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">Global Winner GUA 2024 · Best Innovator Award</div>
+      </div>
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">👁️</div>
+        <div class="chip" style="margin-bottom:14px">Computer Vision · Accessibility</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Vision Assistance Systems</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Led Optisync to develop a low-cost vision assistance system for public transport. Sensory substitution framework translating visual data to tactile feedback. Presented at UK Parliament.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">Parliament Finalist · BioMedEng24 · BMVA Symposium</div>
+      </div>
+      <div class="glass-card reveal" style="padding:28px">
+        <div style="font-size:1.5rem;margin-bottom:16px">🌍</div>
+        <div class="chip" style="margin-bottom:14px">Global Health · COPD · LMICs</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Global Health Research</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Selected as 1 of 4 researchers from 40 applicants across top London universities for Arcadia Impact Research Groups. Evaluating COPD intervention barriers using global burden of disease data.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#334155;line-height:1.6">Arcadia Impact · Oct 2025 – Present</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Ventures &amp; Leadership</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Things I've built.</h2>
+      <p style="color:#64748b;margin-top:12px;max-width:520px;line-height:1.65;font-size:.95rem">I've been founding and running things since my first year of university. Usually scrappy, always cross-disciplinary, and never quite what I planned.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <div class="glass-card reveal" style="padding:36px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px">
+          <div><span class="chip" style="margin-bottom:12px">Current · Imperial IdeaForge Competition</span><h3 style="font-size:1.45rem;font-weight:600;margin-top:10px;letter-spacing:-.01em">Ocora</h3><p style="color:#475569;font-size:.84rem;margin-top:4px">Founder &amp; CEO · Oct 2025 – Present</p></div>
+          <div style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:rgba(125,211,252,.07);border:1px solid rgba(125,211,252,.18)"><div style="width:6px;height:6px;border-radius:50%;background:#7dd3fc;animation:pulse 2s infinite"></div><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#7dd3fc">Active</span></div>
+        </div>
+        <p style="color:#64748b;line-height:1.75;max-width:780px;font-size:.915rem">Ocora started as a final-year Imperial project and became something I couldn't stop thinking about. We're building a medtech solution grounded in real clinical need — currently working through user validation, prototype development, and early stakeholder conversations. Still early, but the problem is real.</p>
+      </div>
+
+      <div class="glass-card reveal" style="padding:36px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:20px">
+          <div><span class="chip" style="margin-bottom:12px">Assistive Tech · Low-Cost Medical Devices</span><h3 style="font-size:1.45rem;font-weight:600;margin-top:10px;letter-spacing:-.01em">Cybathlon</h3><p style="color:#475569;font-size:.84rem;margin-top:4px">Co-Founder &amp; President · Sep 2024 – Jul 2025</p></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="stat-card" style="padding:14px 18px;text-align:center"><div class="accent-text" style="font-size:1.25rem;font-weight:600">£2.5k</div><div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#475569;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">External<br>Sponsorship</div></div>
+            <div class="stat-card" style="padding:14px 18px;text-align:center"><div class="accent-text" style="font-size:1.25rem;font-weight:600">2</div><div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#475569;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">Innovation<br>Awards</div></div>
+          </div>
+        </div>
+        <p style="color:#64748b;line-height:1.75;max-width:780px;font-size:.915rem;margin-bottom:18px">I co-founded Cybathlon to make assistive technology that people on low incomes could actually afford and use. We built devices for visually impaired users, won two innovation awards from a pool of 300+ university societies, and ended up presenting at Parliament — which still feels a bit surreal.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Innovation &amp; Dev Honours Award</span><span class="chip">Small Group Big Impact Award</span><span class="chip">UK Parliament</span></div>
+      </div>
+
+      <div class="glass-card reveal" style="padding:36px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:20px">
+          <div><span class="chip" style="margin-bottom:12px">Deep Tech · Hyperloop Infrastructure</span><h3 style="font-size:1.45rem;font-weight:600;margin-top:10px;letter-spacing:-.01em">Hyperlink</h3><p style="color:#475569;font-size:.84rem;margin-top:4px">President · Aug 2022 – Jul 2024</p></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+            <div class="stat-card" style="padding:14px 14px;text-align:center"><div class="accent-text" style="font-size:1.25rem;font-weight:600">£65k+</div><div style="font-family:'JetBrains Mono',monospace;font-size:.56rem;color:#475569;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">Total<br>Secured</div></div>
+            <div class="stat-card" style="padding:14px 14px;text-align:center"><div class="accent-text" style="font-size:1.25rem;font-weight:600">140+</div><div style="font-family:'JetBrains Mono',monospace;font-size:.56rem;color:#475569;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">Team<br>Members</div></div>
+            <div class="stat-card" style="padding:14px 14px;text-align:center"><div class="accent-text" style="font-size:1.25rem;font-weight:600">2</div><div style="font-family:'JetBrains Mono',monospace;font-size:.56rem;color:#475569;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">Global<br>Awards</div></div>
+          </div>
+        </div>
+        <p style="color:#64748b;line-height:1.75;max-width:780px;font-size:.915rem;margin-bottom:18px">For two years I ran a 140-person team building an actual hyperloop pod. We competed at European Hyperloop Week and Hyperloop Global Canada, raised £65k+ in grants and sponsorship, and somehow won awards doing it. It taught me more about leadership and fundraising than anything else I've done.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">£47k External Sponsorship</span><span class="chip">£18k Internal Grants</span><span class="chip">Innovation Award</span><span class="chip">Best Braking Subsystem Award</span><span class="chip">European Hyperloop Week</span><span class="chip">Hyperloop Global Canada</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:48px">
+      <div class="sec-label" style="margin-bottom:16px">Publications</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Papers &amp; publications.</h2>
+    </div>
+    <div class="reveal" style="display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="journal">Journal Papers</button>
+      <button class="filter-btn" data-filter="awarded">Awarded Theses</button>
+      <button class="filter-btn" data-filter="competition">Competition Papers</button>
+    </div>
+    <div id="pub-list" style="display:flex;flex-direction:column;gap:12px">
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="journal">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Journal</span><span class="chip">IEEE MetroXraine</span><span class="chip">Prosthetics</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Towards Real-Time Prosthetic Control Using Multi-Domain Time–Frequency EMG Classification and ResNet Transfer Learning</h4>
+          <p style="color:#475569;font-size:.83rem;margin-bottom:6px">Khuwaija S.H., <strong style="color:#94a3b8">Dhillon B.</strong>, Mughal M., Shaheed M.H.</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155">Role: Developed transfer learning architecture and led experimental validation.</p>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="journal">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Journal</span><span class="chip">MICCAI StatCom</span><span class="chip">PINNs · Cardiac</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">openCARP-PINNs: Towards Faster Prediction of Cardiac Signal Propagation</h4>
+          <p style="color:#475569;font-size:.83rem;margin-bottom:6px">Zolotarev A., Ip L., Saveri K., <strong style="color:#94a3b8">Dhillon B.</strong>, Martin C., Roney C.</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155">Role: Optimised PINN architecture and co-led results interpretation.</p>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="journal">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Journal</span><span class="chip-gold">IEEE TBE — In Review</span><span class="chip">HD-sEMG · RL</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Dynamic Gesture Recognition with HD-sEMG: An Online Approach Using Reinforcement and One-Shot Learning</h4>
+          <p style="color:#475569;font-size:.83rem;margin-bottom:6px">Hussain S., <strong style="color:#94a3b8">Dhillon B.</strong>, Shaheed H.</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155">Role: Developed RL model and Siamese network pipeline.</p>
+        </div></div>
+      </div>
+
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="awarded">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Awarded Thesis</span><span class="chip-gold">Global Winner 2025</span><span class="chip">Top 1% Globally</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Developing a Multimodal Deep Learning Pipeline for Automated Glioma Subregion Segmentation and 3D Reconstruction with Integrated Spatial Analysis for Clinical Insight</h4>
+          <p style="color:#475569;font-size:.83rem;margin-bottom:10px"><strong style="color:#94a3b8">Dhillon B.</strong>, Tse Z. &amp; Sadati H. (2025). <em>The Undergraduate Library.</em></p>
+          <a href="https://gua.ie/the-global-undergraduate-awards/engineering/" class="plink" target="_blank" rel="noopener">View Award ↗</a>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="awarded">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Awarded Thesis</span><span class="chip-gold">Global Winner 2024</span><span class="chip">Top 1% Globally</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Developing a Bioresorbable Drug-Eluting Stent with Organ-On-A-Chip Validation</h4>
+          <p style="color:#475569;font-size:.83rem;margin-bottom:10px"><strong style="color:#94a3b8">Dhillon B.</strong> &amp; Iskratsch T. (2024). <em>The Undergraduate Library.</em></p>
+          <a href="https://gua.ie/the-global-undergraduate-awards/engineering/" class="plink" target="_blank" rel="noopener">View Award ↗</a>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="competition">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Competition</span><span class="chip">European Hyperloop Week 2024</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Investigating the Impact of Overground and Underground Hyperloop Travel on the Spine</h4>
+          <p style="color:#475569;font-size:.83rem">Young K., Ghorbani L., Shringari M., <strong style="color:#94a3b8">Dhillon B.</strong>, et al. (2024)</p>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="competition">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Competition</span><span class="chip">European Hyperloop Week 2023</span><span class="chip-gold">Innovation Award</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Researching and Designing a Suitable Electromagnetic Shield for the Hyperloop Transportation Pod</h4>
+          <p style="color:#475569;font-size:.83rem"><strong style="color:#94a3b8">Dhillon B.</strong>, Dawoud F. &amp; Greenway A. (2023)</p>
+        </div></div>
+      </div>
+
+      <div class="glass-card pub-item reveal" style="padding:24px 28px" data-cat="competition">
+        <div style="display:flex;align-items:flex-start;gap:16px"><div class="tl-dot"></div><div style="flex:1">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="chip">Competition</span><span class="chip">European Hyperloop Week 2023</span></div>
+          <h4 style="font-size:.93rem;font-weight:500;line-height:1.5;margin-bottom:8px">Designing Inclusive, Ergonomic and Safe Hyperloop Seating</h4>
+          <p style="color:#475569;font-size:.83rem"><strong style="color:#94a3b8">Dhillon B.</strong>, Dawoud F., Rangmang K. &amp; Sadiatoonasa S. (2023)</p>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TALKS -->
+<section id="talks" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Conference Presentations</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">15+ talks &amp; posters.</h2>
+      <p style="color:#64748b;margin-top:12px;font-size:.95rem">From Baltimore to Oxford — medical robotics, AI, and bioengineering.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px">
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip" style="margin-top:2px;flex-shrink:0">Oral</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Glioma Deep Learning Pipeline</h4><p style="color:#475569;font-size:.76rem">National MedTech Conference · Nov 2025</p><p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#1e3a4a;margin-top:4px">Top 5 abstract nationally</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip" style="margin-top:2px;flex-shrink:0">Oral</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">openCARP-PINNs: Cardiac Signal Propagation</h4><p style="color:#475569;font-size:.76rem">IOP Physics Enhancing Machine Learning, London · 2025</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip" style="margin-top:2px;flex-shrink:0">Oral</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Bioresorbable Drug-Eluting Stent Research</h4><p style="color:#475569;font-size:.76rem">Barts &amp; The London Innovation in Medicine · 2024</p><p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#1e3a4a;margin-top:4px">🏆 Best Innovator Award</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip" style="margin-top:2px;flex-shrink:0">Oral</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Low-Cost Vision Assistance System</h4><p style="color:#475569;font-size:.76rem">University of Westminster · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-gold" style="margin-top:2px;flex-shrink:0">Parliament</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Vision Assistance Devices for Accessibility</h4><p style="color:#475569;font-size:.76rem">British Parliament · Mar 2025</p><p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#1e3a4a;margin-top:4px">1 of 2 from 40+ submissions</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">AI-Driven HD-sEMG for Prosthetic Control</h4><p style="color:#475569;font-size:.76rem">6th Robot Manipulation Workshop, KCL · 2025</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Haptic Feedback in Robotic Surgery — Systematic Review</h4><p style="color:#475569;font-size:.76rem">Hamlyn Medical Robotics Symposium · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">AI-Enhanced HD-sEMG for Prosthetic Functionality</h4><p style="color:#475569;font-size:.76rem">BMES Annual Meeting, Baltimore, MD, USA · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">AI-Enhanced HD-sEMG for Prosthetics</h4><p style="color:#475569;font-size:.76rem">IEEE RAS, Sheffield · 5th UK Robot Manipulation, Oxford · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">ML for Vacant Seat Identification</h4><p style="color:#475569;font-size:.76rem">BioMedEng24, QMUL · BMVA Symposium · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Drug-Eluting Stent with Organ-on-a-Chip</h4><p style="color:#475569;font-size:.76rem">BioMedEng24 · KCL Medical Students Conference · 2024</p><p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#1e3a4a;margin-top:4px">Top submission of 25 (KCL)</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Spirometer Design · IMU Sensors for Rehabilitation</h4><p style="color:#475569;font-size:.76rem">BioMedEng24, Queen Mary University · 2024</p></div></div></div>
+
+      <div class="glass-card reveal" style="padding:18px 22px"><div style="display:flex;align-items:flex-start;gap:10px"><span class="chip-muted" style="margin-top:2px;flex-shrink:0">Poster</span><div><h4 style="font-size:.86rem;font-weight:500;margin-bottom:5px;line-height:1.4">Differential Pressure Spirometry</h4><p style="color:#475569;font-size:.76rem">BMES Annual Meeting, Baltimore · 2024</p></div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section id="media" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Media &amp; Press</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Press &amp; appearances.</h2>
+      <p style="color:#64748b;margin-top:12px;max-width:560px;line-height:1.65;font-size:.95rem">A few places I've shown up — from national newspapers in Malaysia to podcasts and keynote invitations. Mostly unexpected, always appreciated.</p>
+    </div>
+
+    <div class="reveal" style="margin-bottom:40px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px">Press &amp; News · 2025</div>
+      <div class="glass-flat" style="padding:8px 32px">
+        <div class="award-row">
+          <div class="award-yr">Dec</div>
+          <div style="flex:1">
+            <a href="https://www.nst.com.my/news/nation/2025/12/1338596/queen-honours-malaysian-student-international-achievements-biomedical" class="mlink" target="_blank" rel="noopener">Queen honours Malaysian student for international achievements in biomedical engineering</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">New Straits Times — Malaysian national newspaper</p>
+          </div>
+        </div>
+        <div class="award-row">
+          <div class="award-yr">Dec</div>
+          <div style="flex:1">
+            <a href="https://www.thestar.com.my/news/nation/2025/12/14/perak-lass-earns-global-recognition" class="mlink" target="_blank" rel="noopener">Perak lass earns global recognition</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">The Star Malaysia</p>
+          </div>
+        </div>
+        <div class="award-row">
+          <div class="award-yr">Dec</div>
+          <div style="flex:1">
+            <a href="https://www.bernama.com/en/news.php?id=2503530/" class="mlink" target="_blank" rel="noopener">Queen of Malaysia Commends Balvinder's International Medical Research Feat</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">Bernama — Malaysian national news agency</p>
+          </div>
+        </div>
+        <div class="award-row">
+          <div class="award-yr">Nov</div>
+          <div style="flex:1">
+            <a href="https://asiasamachar.com/2025/11/30/consistency-over-breakthroughs-the-story-behind-balvinders-historic-junior-nobel-feat/" class="mlink" target="_blank" rel="noopener">Consistency over breakthroughs: The story behind Balvinder's historic 'Junior Nobel' feat</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">Asia Samachar — global Punjabi Sikh publication</p>
+          </div>
+        </div>
+        <div class="award-row">
+          <div class="award-yr">2025</div>
+          <div style="flex:1">
+            <a href="https://www.sems.qmul.ac.uk/news/7331/biomedical-engineering-student-wins-junior-nobel-prize-for-second-year-in-a-row/" class="mlink" target="_blank" rel="noopener">Biomedical Engineering student wins 'Junior Nobel Prize' for second year in a row</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">Queen Mary University of London — first consecutive win for the school</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-bottom:40px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px">Press &amp; News · 2024</div>
+      <div class="glass-flat" style="padding:8px 32px">
+        <div class="award-row">
+          <div class="award-yr">2024</div>
+          <div style="flex:1">
+            <a href="https://www.timeshighereducation.com/student/news/global-undergraduate-awards-2024-winners/" class="mlink" target="_blank" rel="noopener">Global Undergraduate Awards 2024 Winners — Engineering</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">Times Higher Education</p>
+          </div>
+        </div>
+        <div class="award-row">
+          <div class="award-yr">2024</div>
+          <div style="flex:1">
+            <a href="https://www.sems.qmul.ac.uk/news/7009/biomedical-engineering-student-wins-junior-nobel-prize/" class="mlink" target="_blank" rel="noopener">Biomedical Engineering student wins 'Junior Nobel Prize'</a>
+            <p style="color:#475569;font-size:.78rem;margin-top:4px">Queen Mary University of London</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px">Talks, Podcasts &amp; Public Engagement</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+
+        <div class="glass-card" style="padding:22px">
+          <div class="chip-muted" style="margin-bottom:12px">Podcast · Guest</div>
+          <h4 style="font-size:.9rem;font-weight:500;margin-bottom:8px;line-height:1.4">Kameron's Lab Podcast</h4>
+          <p style="color:#64748b;font-size:.8rem;line-height:1.6">Guest episode on forging an independent path as an international student and woman in engineering.</p>
+        </div>
+
+        <div class="glass-card" style="padding:22px">
+          <div class="chip-muted" style="margin-bottom:12px">Panel · International</div>
+          <h4 style="font-size:.9rem;font-weight:500;margin-bottom:8px;line-height:1.4">Kameron's Lab Conference</h4>
+          <p style="color:#64748b;font-size:.8rem;line-height:1.6">Invited panel speaker — "Diary of a Girl Boss" for an international audience.</p>
+        </div>
+
+        <div class="glass-card" style="padding:22px">
+          <div class="chip-muted" style="margin-bottom:12px">Keynote · IIT Delhi</div>
+          <h4 style="font-size:.9rem;font-weight:500;margin-bottom:8px;line-height:1.4">Hyperloop Keynote Speech</h4>
+          <p style="color:#64748b;font-size:.8rem;line-height:1.6">Invited keynote on Hyperloop developments alongside Juan Vicen Balaguer, Founder of Zeleros.</p>
+        </div>
+
+        <div class="glass-card" style="padding:22px">
+          <div class="chip-muted" style="margin-bottom:12px">Podcast · Research</div>
+          <h4 style="font-size:.9rem;font-weight:500;margin-bottom:8px;line-height:1.4">Hyperloop Global Canada Podcast</h4>
+          <p style="color:#64748b;font-size:.8rem;line-height:1.6">Invited discussion on biomedical engineering applications within Hyperloop transportation systems.</p>
+        </div>
+
+        <div class="glass-card" style="padding:22px">
+          <div class="chip-muted" style="margin-bottom:12px">Speaker · 2× Invited</div>
+          <h4 style="font-size:.9rem;font-weight:500;margin-bottom:8px;line-height:1.4">MBIOS Subject Talks — QMUL</h4>
+          <p style="color:#64748b;font-size:.8rem;line-height:1.6">Invited on two occasions to inspire prospective biomedical engineering students at Queen Mary.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="sec-label" style="margin-bottom:16px">Technical Stack</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">How I build things.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px">
+      <div class="reveal">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px">Core Languages</div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:.9rem;color:#cbd5e1">Python</span><span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#475569">Expert</span></div><div class="sbar"><div class="sbar-fill" data-w="0.94"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:.9rem;color:#cbd5e1">MATLAB</span><span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#475569">Expert (self-taught)</span></div><div class="sbar"><div class="sbar-fill" data-w="0.90"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:.9rem;color:#cbd5e1">Julia</span><span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#475569">Intermediate (self-taught)</span></div><div class="sbar"><div class="sbar-fill" data-w="0.62"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:.9rem;color:#cbd5e1">LabVIEW</span><span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#475569">Intermediate</span></div><div class="sbar"><div class="sbar-fill" data-w="0.58"></div></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px">Domains</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Deep Learning &amp; Transfer Learning</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Physics-Informed Neural Networks</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">EMG Signal Processing</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Finite Element Modelling</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Computational Fluid Dynamics</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Computer Vision &amp; Robotics</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Electromagnetic Modelling</div>
+          <div class="glass-card" style="padding:12px 15px;border-radius:12px;font-size:.8rem;color:#94a3b8">Circuit Design &amp; 3D Printing</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:48px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em;margin-bottom:20px">Software &amp; Tools</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="chip">ANSYS</span><span class="chip">Abaqus</span><span class="chip">StarCCM+</span><span class="chip">ANSYS Fluent</span><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">OpenCV</span><span class="chip">SLA &amp; FDM 3D Printing</span><span class="chip">Git</span><span class="chip">LabVIEW</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(255,255,255,.05);padding:56px 24px 40px;position:relative;z-index:1">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:40px">
+    <div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:8px">Balvinder Kaur Dhillon</h3>
+      <p style="color:#475569;font-size:.875rem;line-height:1.6;max-width:380px">Student, researcher, and founder — currently based in London and building Ocora. Always happy to talk research, startups, or anything in between.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
+      <a href="/cdn-cgi/l/email-protection#ee8c8f829887808a8b9c858f9b9c8a868782828180dfae89838f8782c08d8183" style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#64748b;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#7dd3fc'" onmouseout="this.style.color='#64748b'"><span class="__cf_email__" data-cfemail="ccaeada0baa5a2a8a9bea7adb9bea8a4a5a0a0a3a2fd8caba1ada5a0e2afa3a1">[email&#160;protected]</span></a>
+      <a href="https://linkedin.com/in/balvinderkaurdhillon" style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#64748b;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#7dd3fc'" onmouseout="this.style.color='#64748b'">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#1e293b">© 2025 Balvinder Kaur Dhillon</p>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#1e293b">Imperial College London</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*50);obs.unobserve(e.target);}});},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.pub-item').forEach(item=>{item.style.display=(f==='all'||item.dataset.cat===f)?'block':'none';});
+  });
+});
+
+const skillObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sbar-fill').forEach(b=>b.classList.add('go'));skillObs.unobserve(e.target);}});},{threshold:0.3});
+document.querySelectorAll('#stack').forEach(el=>skillObs.observe(el));
+
+const sections=doc
