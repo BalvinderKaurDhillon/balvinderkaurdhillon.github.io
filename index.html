@@ -40,7 +40,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
 ::-webkit-scrollbar-track{background:#09090b}
 ::-webkit-scrollbar-thumb{background:rgba(125,211,252,.25);border-radius:2px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-@media(max-width:768px){.dnav{display:none!important}.hh{font-size:2.8rem!important}.sgrid{grid-template-columns:1fr!important}.tgrid{grid-template-columns:1fr!important}}
+@media(max-width:768px){.dnav{display:none!important}.hh{font-size:2.8rem!important}.sgrid{grid-template-columns:1fr!important}.tgrid{grid-template-columns:1fr!important}.chip,.chipm,.chipg{white-space:normal;word-break:break-word;max-width:100%}.fb{white-space:normal;line-height:1.4;padding:8px 12px}.ml{overflow-wrap:anywhere}.ar{gap:12px}.ay{min-width:24px}}
 </style>
 </head>
 <body>
@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
     <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:#94a3b8;letter-spacing:.12em">BKD</span>
     <div class="dnav" style="display:flex;align-items:center;gap:26px">
       <a href="#ventures" class="nl">Things Built</a>
-      <a href="#research" class="nl">Research</a>
+      <a href="#research" class="nl">Research &amp; Projects</a>
       <a href="#awards" class="nl">Awards</a>
       <a href="#publications" class="nl">Publications</a>
       <a href="#media" class="nl">Media</a>
@@ -79,6 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
   <div style="display:flex;gap:12px;flex-wrap:wrap">
     <a href="#ventures" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;background:linear-gradient(135deg,#7dd3fc,#a5b4fc);color:#09090b;font-weight:600;font-size:.875rem;text-decoration:none">View work ↓</a>
     <a href="mailto:balvinderkaurdhillon1@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:.875rem;text-decoration:none">Get in touch</a>
+    <a href="https://docs.google.com/document/d/1j3WUo64v5INzNhrwQgkVkqhb9xW12my_p14ghONGsM8/edit?usp=sharing" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:12px;border:1px solid rgba(125,211,252,.28);color:#7dd3fc;font-size:.875rem;text-decoration:none">Download CV ↗</a>
   </div>
 </section>
 
@@ -97,6 +98,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
           <div style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:rgba(125,211,252,.07);border:1px solid rgba(125,211,252,.18);height:fit-content"><div style="width:6px;height:6px;border-radius:50%;background:#7dd3fc;animation:pulse 2s infinite"></div><span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#7dd3fc">Active</span></div>
         </div>
         <p style="color:#64748b;line-height:1.75;max-width:780px;font-size:.915rem">An early-stage medical technology venture grounded in unmet clinical need, currently progressing through user research, prototype development, and close collaboration with clinical stakeholders.</p>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#475569;margin-top:14px;letter-spacing:.03em">Currently: collaborating with clinicians to design and scope prospective clinical studies.</p>
       </div>
 
       <div class="gc" style="padding:36px">
@@ -124,62 +126,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
         <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">£47k External Sponsorship</span><span class="chip">£18k Internal Grants</span><span class="chip">Innovation Award</span><span class="chip">Best Braking Subsystem Award</span></div>
       </div>
 
-      <div style="margin-top:24px;margin-bottom:8px">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:.66rem;color:#334155;text-transform:uppercase;letter-spacing:.14em">Selected Projects</div>
-      </div>
-      <div class="sgrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
-        <div class="gc" style="padding:28px">
-          <div style="font-size:1.4rem;margin-bottom:16px">🧬</div>
-          <div class="chip" style="margin-bottom:14px">Reinforcement Learning · Digital Twins</div>
-          <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Brain Tumour Digital Twins</h3>
-          <p style="color:#64748b;font-size:.858rem;line-height:1.7">Reinforcement learning framework for patient-specific digital twin simulations of brain tumour growth and treatment response, enabling in-silico exploration of intervention strategies prior to clinical decision-making.</p>
-          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">MSc Research · Imperial College London</div>
-        </div>
-        <div class="gc" style="padding:28px">
-          <div style="font-size:1.4rem;margin-bottom:16px">🔬</div>
-          <div class="chip" style="margin-bottom:14px">Genomics · Probabilistic Modelling</div>
-          <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Tumour Genomic Biomarker Modelling</h3>
-          <p style="color:#64748b;font-size:.858rem;line-height:1.7">Computational pipeline for automated biomarker extraction from tumour genomic data, with probabilistic estimation of biomarker presence to support precision oncology and clinical stratification.</p>
-          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">MSc Research · Imperial College London</div>
-        </div>
-        <div class="gc" style="padding:28px">
-          <div style="font-size:1.4rem;margin-bottom:16px">💧</div>
-          <div class="chip" style="margin-bottom:14px">Subject-Specific Modelling · NPH</div>
-          <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Ventricular Modelling for NPH</h3>
-          <p style="color:#64748b;font-size:.858rem;line-height:1.7">Subject-specific computational models of cerebral ventricles to characterise cerebrospinal fluid dynamics in normal pressure hydrocephalus, supporting individualised diagnosis and surgical planning.</p>
-          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">MSc Research · Imperial College London</div>
-        </div>
-        <div class="gc" style="padding:28px">
-          <div style="font-size:1.4rem;margin-bottom:16px">🩺</div>
-          <div class="chip" style="margin-bottom:14px">Digital Health · Clinician Wellbeing</div>
-          <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Clinician Burnout Detection</h3>
-          <p style="color:#64748b;font-size:.858rem;line-height:1.7">Built a mobile application for early detection of burnout in physicians, integrating validated psychometric assessments with behavioural signals to support clinician wellbeing and workforce sustainability.</p>
-          <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Barts &amp; The London Digital Health Hackathon · Runner-Up</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 <section id="research" style="padding:96px 24px;border-top:1px solid rgba(255,255,255,.05);position:relative;z-index:1">
   <div style="max-width:1100px;margin:0 auto">
-    <div style="margin-bottom:56px">
-      <div class="sl" style="margin-bottom:16px">Research</div>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Research.</h2>
-      <p style="color:#64748b;margin-top:12px;max-width:560px;line-height:1.65;font-size:.95rem">Four years of cross-disciplinary research spanning computational neuroscience, medical imaging, deep learning, biomaterials, and computational fluid dynamics.</p>
+    <div style="margin-bottom:36px">
+      <div class="sl" style="margin-bottom:16px">Research &amp; Projects</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;letter-spacing:-.02em">Research &amp; projects.</h2>
+      <p style="color:#64748b;margin-top:12px;max-width:560px;line-height:1.65;font-size:.95rem">Selected technical work spanning computational neuroscience, cardiac modelling, medical robotics, biomaterials, and global health.</p>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap">
+      <button class="fb on" data-rf="all">All</button>
+      <button class="fb" data-rf="neuro">Neuroscience</button>
+      <button class="fb" data-rf="cardiac">Cardiac</button>
+      <button class="fb" data-rf="robotics">Robotics &amp; Devices</button>
+      <button class="fb" data-rf="health">Digital &amp; Global Health</button>
     </div>
     <div class="sgrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
 
-      <div class="gc" style="padding:28px">
-        <div style="font-size:1.4rem;margin-bottom:16px">⚡</div>
-        <div class="chip" style="margin-bottom:14px">HD-sEMG · Prosthetics · RL</div>
-        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">AI-Driven Prosthetic Control</h3>
-        <p style="color:#64748b;font-size:.858rem;line-height:1.7">CNN–Q-learning and Siamese networks for one-shot HD-sEMG gesture classification. Developed ResNet and AlexNet transfer learning pipelines at the Advanced Robotics Lab, QMUL.</p>
-        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">IEEE TBE (In Review) · IEEE MetroXraine · BMES 2024</div>
+      <div class="gc ri" style="padding:28px" data-rc="neuro">
+        <div style="font-size:1.4rem;margin-bottom:16px">🧬</div>
+        <div class="chip" style="margin-bottom:14px">Reinforcement Learning · Digital Twins</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Brain Tumour Digital Twins</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Reinforcement learning framework for patient-specific digital twin simulations of brain tumour growth and treatment response, enabling in-silico exploration of intervention strategies prior to clinical decision-making.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Ocora R&amp;D · 2025</div>
       </div>
 
-      <div class="gc" style="padding:28px">
+      <div class="gc ri" style="padding:28px" data-rc="neuro">
+        <div style="font-size:1.4rem;margin-bottom:16px">🔬</div>
+        <div class="chip" style="margin-bottom:14px">Genomics · Probabilistic Modelling</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Tumour Genomic Biomarker Modelling</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Computational pipeline for automated biomarker extraction from tumour genomic data, with probabilistic estimation of biomarker presence to support precision oncology and clinical stratification.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Ocora R&amp;D · 2025</div>
+      </div>
+
+      <div class="gc ri" style="padding:28px" data-rc="neuro">
+        <div style="font-size:1.4rem;margin-bottom:16px">💧</div>
+        <div class="chip" style="margin-bottom:14px">Subject-Specific Modelling · NPH</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Ventricular Modelling for NPH</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Subject-specific computational models of cerebral ventricles to characterise cerebrospinal fluid dynamics in normal pressure hydrocephalus, supporting individualised diagnosis and surgical planning.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">MSc Research · Imperial College London</div>
+      </div>
+
+      <div class="gc ri" style="padding:28px" data-rc="neuro">
         <div style="font-size:1.4rem;margin-bottom:16px">🧠</div>
         <div class="chip" style="margin-bottom:14px">Deep Learning · Neuroimaging</div>
         <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Multimodal Glioma Analysis</h3>
@@ -187,7 +178,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Global Winner GUA 2025 · NatMedTech 2025 (Top 5)</div>
       </div>
 
-      <div class="gc" style="padding:28px">
+      <div class="gc ri" style="padding:28px" data-rc="cardiac">
         <div style="font-size:1.4rem;margin-bottom:16px">🫀</div>
         <div class="chip" style="margin-bottom:14px">PINNs · Cardiac Electrophysiology</div>
         <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Physics-Informed Neural Networks</h3>
@@ -195,7 +186,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">MICCAI StatCom · IOP Physics-ML 2025</div>
       </div>
 
-      <div class="gc" style="padding:28px">
+      <div class="gc ri" style="padding:28px" data-rc="cardiac">
         <div style="font-size:1.4rem;margin-bottom:16px">💊</div>
         <div class="chip" style="margin-bottom:14px">Materials · Biomechanics · CFD</div>
         <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Bioresorbable Drug-Eluting Stents</h3>
@@ -203,7 +194,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Global Winner GUA 2024 · Best Innovator Award</div>
       </div>
 
-      <div class="gc" style="padding:28px">
+      <div class="gc ri" style="padding:28px" data-rc="robotics">
+        <div style="font-size:1.4rem;margin-bottom:16px">⚡</div>
+        <div class="chip" style="margin-bottom:14px">HD-sEMG · Prosthetics · RL</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">AI-Driven Prosthetic Control</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">CNN–Q-learning and Siamese networks for one-shot HD-sEMG gesture classification. Developed ResNet and AlexNet transfer learning pipelines at the Advanced Robotics Lab, QMUL.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">IEEE TBE (In Review) · IEEE MetroXraine · BMES 2024</div>
+      </div>
+
+      <div class="gc ri" style="padding:28px" data-rc="robotics">
         <div style="font-size:1.4rem;margin-bottom:16px">👁️</div>
         <div class="chip" style="margin-bottom:14px">Computer Vision · Accessibility</div>
         <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Vision Assistance Systems</h3>
@@ -211,7 +210,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
         <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Parliament Finalist · BioMedEng24 · BMVA Symposium</div>
       </div>
 
-      <div class="gc" style="padding:28px">
+      <div class="gc ri" style="padding:28px" data-rc="health">
+        <div style="font-size:1.4rem;margin-bottom:16px">🩺</div>
+        <div class="chip" style="margin-bottom:14px">Digital Health · Clinician Wellbeing</div>
+        <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Clinician Burnout Detection</h3>
+        <p style="color:#64748b;font-size:.858rem;line-height:1.7">Built a mobile application for early detection of burnout in physicians, integrating validated psychometric assessments with behavioural signals to support clinician wellbeing and workforce sustainability.</p>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:.63rem;color:#334155;line-height:1.6">Barts &amp; The London Digital Health Hackathon · Runner-Up</div>
+      </div>
+
+      <div class="gc ri" style="padding:28px" data-rc="health">
         <div style="font-size:1.4rem;margin-bottom:16px">🌍</div>
         <div class="chip" style="margin-bottom:14px">Global Health · COPD · LMICs</div>
         <h3 style="font-size:1rem;font-weight:500;margin:12px 0 10px;line-height:1.4">Global Health Research</h3>
@@ -404,12 +411,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid rgba
 <script>
 document.querySelectorAll('.fb').forEach(function(btn){
   btn.addEventListener('click',function(){
-    document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on')});
-    btn.classList.add('on');
     var f=btn.getAttribute('data-f');
-    document.querySelectorAll('.pi').forEach(function(item){
-      item.style.display=(f==='all'||item.getAttribute('data-c')===f)?'':'none';
-    });
+    var rf=btn.getAttribute('data-rf');
+    if(f!==null){
+      document.querySelectorAll('.fb[data-f]').forEach(function(b){b.classList.remove('on')});
+      btn.classList.add('on');
+      document.querySelectorAll('.pi').forEach(function(item){
+        item.style.display=(f==='all'||item.getAttribute('data-c')===f)?'':'none';
+      });
+    } else if(rf!==null){
+      document.querySelectorAll('.fb[data-rf]').forEach(function(b){b.classList.remove('on')});
+      btn.classList.add('on');
+      document.querySelectorAll('.ri').forEach(function(item){
+        item.style.display=(rf==='all'||item.getAttribute('data-rc')===rf)?'':'none';
+      });
+    }
   });
 });
 
