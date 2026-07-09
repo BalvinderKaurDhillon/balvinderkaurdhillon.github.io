@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Balvinder Kaur Dhillon</title>
+<meta name="description" content="Balvinder Kaur Dhillon — founder & researcher. Building Ocora. Computational modelling for brain disease. Imperial College London."/>
+<meta name="theme-color" content="#050507"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#050507;
+  --fg:#f0f1f5;
+  --muted:#9aa1b2;
+  --faint:#5e6678;
+  --line:rgba(255,255,255,.055);
+  --line-strong:rgba(255,255,255,.1);
+  --accent:#8ed4fc;
+  --accent-2:#a8b6ff;
+  --accent-3:#c4b5fd;
+  --gold:#e8c478;
+  --glass:rgba(255,255,255,.028);
+  --radius:20px;
+  --max:1140px;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Sora',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--fg);font-family:var(--sans);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;
+}
+::selection{background:rgba(142,212,252,.28);color:#fff}
+a{color:inherit}
+svg{display:block;max-width:100%}
+button{font:inherit;border:none;background:none;cursor:pointer;color:inherit}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(142,212,252,.25);border-radius:3px}
+
+/* Atmosphere: solid bg + one soft orb + vignette */
+.scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(140px)}
+.orb-a{
+  width:min(70vw,760px);height:min(70vw,760px);top:-22%;left:-16%;
+  background:radial-gradient(circle,rgba(142,212,252,.1),transparent 68%);
+}
+.vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 30%,transparent 30%,rgba(5,5,7,.9) 100%);
+}
+
+.wrap{position:relative;z-index:1}
+.container{max-width:var(--max);margin:0 auto;padding:0 28px}
+.section{padding:110px 0;border-top:1px solid var(--line)}
+
+.section-head{margin-bottom:52px;max-width:720px}
+.section-num{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:18px;display:flex;align-items:center;gap:12px;
+}
+.section-num::after{content:'';flex:1;max-width:48px;height:1px;background:linear-gradient(90deg,rgba(142,212,252,.45),transparent)}
+.section-head h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.2vw,3rem);
+  letter-spacing:-.03em;line-height:1.08;
+}
+
+.grad{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2) 50%,var(--accent-3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.chip,.chipm,.chipg{
+  display:inline-flex;align-items:center;font-family:var(--mono);font-size:.62rem;
+  padding:4px 11px;border-radius:999px;letter-spacing:.06em;line-height:1.4;
+}
+.chip{border:1px solid rgba(142,212,252,.28);color:var(--accent);background:rgba(142,212,252,.07)}
+.chipm{border:1px solid var(--line-strong);color:var(--faint)}
+.chipg{border:1px solid rgba(232,196,120,.35);color:var(--gold);background:rgba(232,196,120,.07)}
+
+.card{
+  background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+  transition:border-color .3s,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .3s;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .3s;
+  background:radial-gradient(480px circle at var(--mx,50%) var(--my,0%),rgba(142,212,252,.07),transparent 42%);
+}
+@media(hover:hover) and (pointer:fine){
+  .card:hover{border-color:rgba(142,212,252,.18);transform:translateY(-2px);box-shadow:0 28px 60px -32px rgba(0,0,0,.85);background:rgba(255,255,255,.04)}
+  .card:hover::before{opacity:1}
+}
+.card-flat{background:rgba(255,255,255,.015);border:1px solid var(--line);border-radius:var(--radius)}
+
+/* Nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  border-bottom:1px solid transparent;transition:all .3s;
+}
+nav.scrolled{
+  border-color:var(--line);background:rgba(5,5,7,.82);
+  backdrop-filter:blur(20px) saturate(1.15);-webkit-backdrop-filter:blur(20px) saturate(1.15);
+}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;color:var(--muted);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{
+  font-family:var(--mono);font-size:.66rem;padding:9px 18px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid rgba(142,212,252,.35);color:var(--accent);text-decoration:none;transition:all .2s;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.nav-cta:hover{background:rgba(142,212,252,.08);box-shadow:0 0 32px -10px rgba(142,212,252,.5)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn:focus-visible,.nav-cta:focus-visible,.menu-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.nav-links a:focus-visible,.foot-links a:focus-visible,.ml:focus-visible,.pl:focus-visible,.logo:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+body.nav-open{overflow:hidden}
+.menu-btn{display:none;padding:10px;color:var(--muted);min-width:44px;min-height:44px}
+.menu-btn svg{width:22px;height:22px}
+.mobile-nav{
+  display:none;position:fixed;inset:64px 0 0 0;z-index:99;
+  background:rgba(5,5,7,.97);backdrop-filter:blur(16px);padding:32px 28px;flex-direction:column;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{
+  font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--line);
+  min-height:44px;
+}
+
+/* Hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
+.hero-top{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(142,212,252,.5);animation:ping 2.4s infinite}
+@keyframes ping{
+  0%{box-shadow:0 0 0 0 rgba(142,212,252,.45)}
+  70%{box-shadow:0 0 0 10px rgba(142,212,252,0)}
+  100%{box-shadow:0 0 0 0 rgba(142,212,252,0)}
+}
+.hero h1{
+  font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,7.5vw,5.6rem);
+  line-height:.98;letter-spacing:-.035em;margin-bottom:28px;
+}
+.hero-lead{
+  font-size:clamp(1.05rem,1.8vw,1.2rem);color:var(--muted);max-width:480px;
+  line-height:1.7;font-weight:300;margin-bottom:40px;
+}
+.hero-lead em{font-family:var(--serif);font-style:italic;color:var(--fg);font-weight:400}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:12px;
+  font-size:.875rem;font-weight:500;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
+  min-height:44px;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,#8ed4fc,#a8b6ff 55%,#c4b5fd);color:#050507;box-shadow:0 12px 36px -14px rgba(142,212,252,.55)}
+.btn-ghost{border:1px solid var(--line-strong);color:var(--muted)}
+.btn-ghost:hover{color:var(--fg);border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.03)}
+
+.hero-visual{position:relative;aspect-ratio:1;max-width:360px;margin-left:auto;width:100%}
+.viz-frame{
+  position:absolute;inset:0;border-radius:50%;overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  background:
+    radial-gradient(circle at 38% 32%,rgba(142,212,252,.08),transparent 52%),
+    radial-gradient(circle at 68% 72%,rgba(168,182,255,.05),transparent 48%),
+    linear-gradient(160deg,rgba(255,255,255,.02),transparent);
+  box-shadow:0 48px 100px -48px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.05);
+}
+#meshCanvas{position:absolute;inset:0;width:100%;height:100%}
+.viz-ring{position:absolute;inset:-5%;border-radius:50%;border:1px solid rgba(255,255,255,.035);pointer-events:none}
+
+/* Proof strip */
+.proof{
+  margin-top:72px;padding-top:36px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+}
+.proof-item{padding:8px 20px 8px 0;border-right:1px solid var(--line)}
+.proof-item:last-child{border-right:none;padding-right:0}
+.proof-n{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);line-height:1;letter-spacing:-.03em;margin-bottom:10px}
+.proof-l{font-family:var(--mono);font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;line-height:1.45}
+
+/* Flagship */
+.flagship{padding:40px;display:grid;grid-template-columns:1.5fr .7fr;gap:40px}
+.flagship .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.flagship h3{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3rem);font-weight:400;letter-spacing:-.03em;line-height:1;margin-bottom:10px}
+.flagship .role{color:var(--faint);font-size:.88rem;margin-bottom:20px;font-family:var(--mono);letter-spacing:.04em}
+.flagship .desc{color:var(--muted);line-height:1.8;font-size:1rem;max-width:560px;font-weight:300}
+.flagship .desc + .desc{margin-top:14px}
+.flagship .note{margin-top:20px;font-family:var(--mono);font-size:.66rem;color:var(--faint);letter-spacing:.04em;line-height:1.6}
+.flagship .sci-link{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.7rem;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(142,212,252,.25);letter-spacing:.04em}
+.flagship .sci-link:hover{color:#bae6fd}
+.award-sub{margin-top:20px}
+.award-sub-label{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.award-list.compact .ar{padding:12px 0}
+.award-list.compact h4{font-size:.88rem}
+.award-list.compact p{font-size:.8rem}
+.pi .flex1{flex:1}
+.pi .authors strong{color:var(--fg)}
+.live-pill{
+  display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;
+  background:rgba(142,212,252,.07);border:1px solid rgba(142,212,252,.22);
+  font-family:var(--mono);font-size:.64rem;color:var(--accent);letter-spacing:.06em;
+}
+.flagship-side{padding:24px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.018);align-self:stretch}
+.flagship-side .sl{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+.flagship-side ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.flagship-side li{font-size:.88rem;color:var(--muted);padding-left:16px;position:relative;line-height:1.4}
+.flagship-side li::before{content:'';position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.75}
+
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.vcard{padding:32px;display:flex;flex-direction:column;min-height:100%}
+.vcard .num{font-family:var(--mono);font-size:.64rem;color:var(--faint);letter-spacing:.16em;margin-bottom:18px}
+.vcard h3{font-family:var(--serif);font-size:1.65rem;font-weight:400;letter-spacing:-.02em;margin:12px 0 6px}
+.vcard .role{color:var(--faint);font-size:.8rem;margin-bottom:16px;font-family:var(--mono)}
+.vcard .desc{color:var(--muted);font-size:.9rem;line-height:1.75;flex:1;font-weight:300}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px}
+.mini-stats.cols-2{grid-template-columns:1fr 1fr}
+.mini-stat{padding:14px 10px;text-align:center;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--line)}
+.mini-stat .n{font-family:var(--serif);font-size:1.25rem;line-height:1;color:var(--fg)}
+.mini-stat .l{font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+
+/* Research pillars */
+.pillar{margin-bottom:48px}
+.pillar:last-child{margin-bottom:0}
+.pillar-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--line);
+}
+.pillar-id{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.14em;margin-right:12px}
+.pillar-title{font-family:var(--serif);font-size:1.55rem;font-weight:400;letter-spacing:-.02em;display:inline}
+.pillar-meta{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rcard{padding:28px;display:flex;flex-direction:column}
+.rcard h3{font-size:1.02rem;font-weight:500;margin:14px 0 10px;line-height:1.35;letter-spacing:-.01em}
+.rcard p{color:var(--muted);font-size:.875rem;line-height:1.7;flex:1;font-weight:300}
+.rcard .meta{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.04em}
+
+/* Writing */
+.pub-group{margin-bottom:48px}
+.pub-group:last-child{margin-bottom:0}
+.pi{padding:24px 28px}
+.pi-inner{display:flex;gap:16px;align-items:flex-start}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+.pi h4{font-size:.95rem;font-weight:500;line-height:1.5;margin-bottom:10px;letter-spacing:-.01em}
+.pi .authors{color:var(--faint);font-size:.84rem;margin-bottom:6px}
+.pi .authors strong{color:var(--muted);font-weight:600}
+.pi .role{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.03em}
+.pl{display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;font-size:.76rem;font-family:var(--mono);border-bottom:1px solid rgba(142,212,252,.25)}
+.pl:hover{color:#bae6fd}
+.stack{display:flex;flex-direction:column;gap:12px}
+.pi-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+
+/* Recognition */
+.award-feature{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.award-hero{padding:36px;border-color:rgba(232,196,120,.22)!important;min-height:240px;display:flex;flex-direction:column}
+.award-hero .yr{font-family:var(--mono);font-size:.62rem;color:var(--gold);letter-spacing:.14em;margin-bottom:20px}
+.award-hero h3{font-family:var(--serif);font-size:1.55rem;font-weight:400;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px}
+.award-hero p{color:var(--muted);font-size:.9rem;line-height:1.7;font-weight:300;margin-top:auto}
+.award-list{padding:12px 32px}
+.ar{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.ar:last-child{border-bottom:none}
+.ay{font-family:var(--mono);font-size:.7rem;color:var(--faint);padding-top:3px;letter-spacing:.06em}
+.ar h4{font-size:.95rem;font-weight:500;margin-bottom:6px;letter-spacing:-.01em}
+.ar p{color:var(--muted);font-size:.84rem;line-height:1.6;font-weight:300}
+
+/* On record */
+.ml{color:var(--accent);text-decoration:none;font-size:.9rem;line-height:1.5;border-bottom:1px solid rgba(142,212,252,.2);font-weight:400}
+.ml:hover{color:#bae6fd}
+.outlet{color:var(--faint);font-size:.78rem;margin-top:6px}
+.talks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* Code / GitHub */
+.code-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.code-card{padding:24px;display:flex;flex-direction:column;text-decoration:none;color:inherit;min-height:100%}
+.code-card .lang{font-family:var(--mono);font-size:.6rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.code-card h3{font-size:.98rem;font-weight:500;margin-bottom:10px;letter-spacing:-.01em;line-height:1.35}
+.code-card p{color:var(--muted);font-size:.84rem;line-height:1.6;flex:1;font-weight:300}
+.code-card .go{margin-top:16px;font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.04em}
+
+/* Personal aside */
+.personal{
+  margin-top:56px;padding:28px 32px;border-radius:var(--radius);
+  border:1px solid var(--line);background:rgba(255,255,255,.02);
+  display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start;
+}
+.personal .label{font-family:var(--mono);font-size:.62rem;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.personal h3{font-family:var(--serif);font-size:1.45rem;font-weight:400;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
+.personal p{color:var(--muted);font-size:.9rem;line-height:1.7;font-weight:300}
+.personal .bits{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.personal .bit{
+  font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.04em;
+  padding:8px 12px;border-radius:999px;border:1px solid var(--line);
+}
+.talk{padding:24px}
+.talk h4{font-size:.95rem;font-weight:500;margin:14px 0 10px;line-height:1.35;letter-spacing:-.01em}
+.talk p{color:var(--muted);font-size:.82rem;line-height:1.65;font-weight:300}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:80px 0 48px}
+.foot-top{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;margin-bottom:56px;align-items:end}
+.foot-top h3{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+.foot-top p{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:400px;font-weight:300}
+.foot-links{display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.foot-links a{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.foot-links a:hover{color:var(--accent)}
+.foot-bot{padding-top:28px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-bot p{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.08em}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .hero-top{grid-template-columns:1fr;gap:40px}
+  .hero-visual{max-width:280px;margin:0 auto}
+  .proof{grid-template-columns:repeat(3,1fr);gap:20px}
+  .proof-item{border-right:none;padding:0;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .flagship{grid-template-columns:1fr}
+  .vgrid,.rgrid,.award-feature,.talks,.code-grid{grid-template-columns:1fr}
+  .personal{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .foot-links{align-items:flex-start}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .menu-btn{display:flex;align-items:center;justify-content:center}
+  .proof{grid-template-columns:1fr 1fr}
+  .section{padding:80px 0}
+  .container{padding:0 22px}
+  .ar{grid-template-columns:48px 1fr;gap:12px}
+  .ar .chipm{display:none}
+  .mini-stats{grid-template-columns:1fr 1fr}
+  .hero{padding:100px 0 64px}
+  .flagship{padding:32px 24px}
+  .hero-cta .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .live-dot{animation:none}
+  .card{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="scene" aria-hidden="true">
+  <div class="orb orb-a"></div>
+  <div class="vignette"></div>
+</div>
+
+<div class="wrap" id="top">
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">BKD</a>
+    <div class="nav-links">
+      <a href="#build">Build</a>
+      <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
+      <a href="#recognition">Recognition</a>
+      <a href="#code">Code</a>
+      <a href="#media">Press</a>
+      <a class="nav-cta" href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#build">Build</a>
+  <a href="#research">Research</a>
+  <a href="#writing">Writing</a>
+  <a href="#recognition">Recognition</a>
+  <a href="#code">Code</a>
+  <a href="#media">Press</a>
+  <a href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <div class="hero-badge"><span class="live-dot" aria-hidden="true"></span> Founder, Ocora · Imperial College London</div>
+        <h1>Balvinder<br>Kaur <span class="grad">Dhillon</span></h1>
+        <p class="hero-lead">
+          Building the future of <em>computational medicine</em> —
+          from patient-specific models of brain disease to ventures that put those models into clinical hands.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#ocora">View Ocora</a>
+          <a class="btn btn-ghost" href="mailto:balvinder.dhillon25@imperial.ac.uk">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="viz-ring"></div>
+        <div class="viz-frame"><canvas id="meshCanvas"></canvas></div>
+      </div>
+    </div>
+
+    <div class="proof">
+      <div class="proof-item"><div class="proof-n grad">2×</div><div class="proof-l">Global Winner<br>GUA Engineering</div></div>
+      <div class="proof-item"><div class="proof-n grad">£65k+</div><div class="proof-l">Raised leading<br>Hyperlink</div></div>
+      <div class="proof-item"><div class="proof-n grad">140+</div><div class="proof-l">Team led at<br>Hyperlink</div></div>
+      <div class="proof-item"><div class="proof-n grad">2</div><div class="proof-l">Companies<br>founded</div></div>
+      <div class="proof-item"><div class="proof-n grad">4+</div><div class="proof-l">Years<br>research</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="build">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">01</div>
+      <h2>I build institutions<br>that move medicine.</h2>
+    </div>
+
+    <div class="card flagship reveal" id="ocora">
+      <div>
+        <div class="kicker">
+          <span class="chip">Now · Imperial IdeaForge</span>
+          <span class="live-pill"><span class="live-dot" aria-hidden="true"></span> Building</span>
+        </div>
+        <h3>Ocora</h3>
+        <p class="role">Founder &amp; CEO · Oct 2025 – Present</p>
+        <p class="desc">Patient-specific computational tools for brain disease — digital twins, biomarker modelling, and clinician-centred product design — moving models from research into clinical workflows.</p>
+        <p class="desc">Science engine already in motion: reinforcement-learning tumour twins and genomic biomarker pipelines under Ocora R&amp;D, continuous with award-winning glioma imaging work (GUA 2025 Global Winner).</p>
+        <p class="note">Stage: early venture · prospective clinical studies in design with clinical partners.</p>
+        <a class="sci-link" href="#research">See related research ↓</a>
+      </div>
+      <div class="flagship-side">
+        <div class="sl">Now</div>
+        <ul>
+          <li>Patient-specific modelling for brain disease</li>
+          <li>Clinician co-design of studies &amp; tools</li>
+          <li>Translational R&amp;D (digital twins, biomarkers)</li>
+          <li>Imperial IdeaForge · early stage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="vgrid">
+      <div class="card vcard reveal">
+        <span class="chip">Assistive technology</span>
+        <h3>Cybathlon</h3>
+        <p class="role">Co-Founder &amp; President · 2024 – 2025</p>
+        <p class="desc">Built an organisation to deliver low-cost assistive technology for visually impaired users in low-income settings. Functional devices shipped. Two university-wide awards from 300+ societies. Presented at the UK Parliament.</p>
+        <div class="mini-stats cols-2">
+          <div class="mini-stat"><div class="n">£2.5k</div><div class="l">Sponsorship</div></div>
+          <div class="mini-stat"><div class="n">2</div><div class="l">Awards</div></div>
+        </div>
+        <div class="tags">
+          <span class="chipm">Parliament</span>
+          <span class="chipm">Innovation Honours</span>
+        </div>
+      </div>
+
+      <div class="card vcard reveal">
+        <span class="chip">Deep tech</span>
+        <h3>Hyperlink</h3>
+        <p class="role">President · 2022 – 2024</p>
+        <p class="desc">Led a 140-person interdisciplinary team to design and build a competition hyperloop pod over two years. Raised £65k+ across grants and sponsorship (£47k external). Two international awards for innovation and engineering.</p>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="n">£65k+</div><div class="l">Raised</div></div>
+          <div class="mini-stat"><div class="n">140+</div><div class="l">Team</div></div>
+          <div class="mini-stat"><div class="n">2</div><div class="l">Awards</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">02</div>
+      <h2>Research that compounds<br>across systems.</h2>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">A</span><h3 class="pillar-title">Computational neuroscience</h3></div>
+        <span class="pillar-meta">4 projects</span>
+      </div>
+      <div class="rgrid">
+        <div class="card rcard">
+          <span class="chip">RL · Digital twins</span>
+          <h3>Brain Tumour Digital Twins</h3>
+          <p>Reinforcement learning for patient-specific simulations of tumour growth and treatment response — interventions tested in silico before the clinic.</p>
+          <div class="meta">Internal · in development · 2025 · <a href="https://github.com/BalvinderKaurDhillon/Brain_Tumour_Digital_Twin" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(142,212,252,.25);text-decoration:none">GitHub</a></div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">Genomics · Probabilistic models</span>
+          <h3>Tumour Genomic Biomarker Modelling</h3>
+          <p>Automated biomarker extraction from tumour genomic data with probabilistic estimates for precision oncology stratification.</p>
+          <div class="meta">Internal · in development · 2025</div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">PI-GCN · NPH</span>
+          <h3>Ventricular Modelling for NPH</h3>
+          <p>Physics-informed graph networks on NPH ventricular meshes — patient-specific growth tensors and recovery of pre-disease geometry.</p>
+          <div class="meta">MSc · Imperial College London · <a href="https://github.com/BalvinderKaurDhillon/NPH_Project" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(142,212,252,.25);text-decoration:none">GitHub</a></div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">Deep learning · Imaging</span>
+          <h3>Multimodal Glioma Analysis</h3>
+          <p>Automated glioma subregion segmentation and 3D reconstruction. Top 1% globally — Global Undergraduate Awards 2025.</p>
+          <div class="meta">Global Winner · GUA 2025 · <a href="https://github.com/BalvinderKaurDhillon/Brain-Tumour-Segmentation-" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(142,212,252,.25);text-decoration:none">GitHub</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">B</span><h3 class="pillar-title">Cardiac modelling &amp; devices</h3></div>
+        <span class="pillar-meta">2 projects</span>
+      </div>
+      <div class="rgrid">
+        <div class="card rcard">
+          <span class="chip">PINNs · Electrophysiology</span>
+          <h3>Physics-Informed Neural Networks</h3>
+          <p>Cardiac signal propagation prediction at Dice 0.96. Personalised atrial fibrillation treatment research at DERI, QMUL.</p>
+          <div class="meta">MICCAI StatCom · IOP Physics-ML 2025</div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">Materials · CFD</span>
+          <h3>Bioresorbable Drug-Eluting Stents</h3>
+          <p>Bioresorbable stent with organ-on-a-chip validation at William Harvey Research Institute. Top 1% globally; Best Innovator Award.</p>
+          <div class="meta">Global Winner · GUA 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">C</span><h3 class="pillar-title">Robotics, prosthetics &amp; access</h3></div>
+        <span class="pillar-meta">2 projects</span>
+      </div>
+      <div class="rgrid">
+        <div class="card rcard">
+          <span class="chip">HD-sEMG · RL</span>
+          <h3>AI-Driven Prosthetic Control</h3>
+          <p>CNN–Q-learning and Siamese networks for one-shot HD-sEMG gesture classification. Transfer learning pipelines at Advanced Robotics Lab, QMUL.</p>
+          <div class="meta">MetroXraine · BMES 2024 · <a href="https://github.com/BalvinderKaurDhillon/Gesture_Recognition" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(142,212,252,.25);text-decoration:none">GitHub</a></div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">Vision · Accessibility</span>
+          <h3>Vision Assistance Systems</h3>
+          <p>Led Optisync: low-cost vision assistance for public transport with vision-to-tactile sensory substitution. UK Parliament finalist.</p>
+          <div class="meta">Parliament · BioMedEng24 · BMVA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">D</span><h3 class="pillar-title">Digital &amp; global health</h3></div>
+        <span class="pillar-meta">2 projects</span>
+      </div>
+      <div class="rgrid">
+        <div class="card rcard">
+          <span class="chip">Digital health</span>
+          <h3>Clinician Burnout Detection</h3>
+          <p>Mobile system for early burnout detection in physicians — validated psychometrics and behavioural signals for workforce sustainability.</p>
+          <div class="meta">Barts Digital Health Hackathon · Runner-Up</div>
+        </div>
+        <div class="card rcard">
+          <span class="chip">COPD · LMICs</span>
+          <h3>Global Health Research</h3>
+          <p>1 of 4 researchers from 40 applicants across top London universities (Arcadia Impact). COPD intervention barriers via global burden of disease data.</p>
+          <div class="meta">Arcadia Impact · 2025 – Present</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="writing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">03</div>
+      <h2>The written record.</h2>
+    </div>
+
+    <div class="pub-group reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">I</span><h3 class="pillar-title">Journal papers</h3></div>
+      </div>
+      <div class="stack">
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div class="flex1">
+            <div class="pi-chips"><span class="chip">IEEE MetroXraine</span><span class="chipm">Prosthetics</span></div>
+            <h4>Towards Real-Time Prosthetic Control Using Multi-Domain Time–Frequency EMG Classification and ResNet Transfer Learning</h4>
+            <p class="authors">Khuwaija S.H., <strong>Dhillon B.</strong>, Mughal M., Shaheed M.H.</p>
+            <p class="role">Transfer learning architecture &amp; experimental validation</p>
+            <a href="https://metroxraine.org/" class="pl" target="_blank" rel="noopener">MetroXraine ↗</a>
+          </div></div>
+        </div>
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div class="flex1">
+            <div class="pi-chips"><span class="chip">MICCAI StatCom</span><span class="chipm">PINNs</span></div>
+            <h4>openCARP-PINNs: Towards Faster Prediction of Cardiac Signal Propagation</h4>
+            <p class="authors">Zolotarev A., Ip L., Saveri K., <strong>Dhillon B.</strong>, Martin C., Roney C.</p>
+            <p class="role">PINN architecture optimisation &amp; results interpretation</p>
+            <a href="https://miccai.org/" class="pl" target="_blank" rel="noopener">MICCAI ↗</a>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-group reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">II</span><h3 class="pillar-title">Awarded theses</h3></div>
+      </div>
+      <div class="stack">
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div class="flex1">
+            <div class="pi-chips"><span class="chipg">Global Winner 2025</span><span class="chipm">Top 1%</span></div>
+            <h4>Developing a Multimodal Deep Learning Pipeline for Automated Glioma Subregion Segmentation and 3D Reconstruction with Integrated Spatial Analysis for Clinical Insight</h4>
+            <p class="authors"><strong>Dhillon B.</strong>, Tse Z. &amp; Sadati H. (2025). <em>The Undergraduate Library.</em></p>
+            <a href="https://gua.ie/the-global-undergraduate-awards/engineering/" class="pl" target="_blank" rel="noopener">GUA Engineering ↗</a>
+          </div></div>
+        </div>
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div class="flex1">
+            <div class="pi-chips"><span class="chipg">Global Winner 2024</span><span class="chipm">Top 1%</span></div>
+            <h4>Developing a Bioresorbable Drug-Eluting Stent with Organ-On-A-Chip Validation</h4>
+            <p class="authors"><strong>Dhillon B.</strong> &amp; Iskratsch T. (2024). <em>The Undergraduate Library.</em></p>
+            <a href="https://gua.ie/the-global-undergraduate-awards/engineering/" class="pl" target="_blank" rel="noopener">GUA Engineering ↗</a>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-group reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">III</span><h3 class="pillar-title">Competition papers</h3></div>
+      </div>
+      <div class="stack">
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div style="flex:1">
+            <div class="pi-chips"><span class="chipm">European Hyperloop Week 2024</span></div>
+            <h4>Investigating the Impact of Overground and Underground Hyperloop Travel on the Spine</h4>
+            <p class="authors">Young K., Ghorbani L., Shringari M., <strong>Dhillon B.</strong>, et al. (2024)</p>
+          </div></div>
+        </div>
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div style="flex:1">
+            <div class="pi-chips"><span class="chipm">EHW 2023</span><span class="chipg">Innovation Award</span></div>
+            <h4>Researching and Designing a Suitable Electromagnetic Shield for the Hyperloop Transportation Pod</h4>
+            <p class="authors"><strong>Dhillon B.</strong>, Dawoud F. &amp; Greenway A. (2023)</p>
+          </div></div>
+        </div>
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div style="flex:1">
+            <div class="pi-chips"><span class="chipm">EHW 2023</span></div>
+            <h4>Designing Inclusive, Ergonomic and Safe Hyperloop Seating</h4>
+            <p class="authors"><strong>Dhillon B.</strong>, Dawoud F., Rangmang K. &amp; Sadiatoonasa S. (2023)</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="recognition">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">04</div>
+      <h2>Recognition.</h2>
+    </div>
+
+    <div class="award-feature reveal">
+      <div class="card award-hero">
+        <div class="yr">2025 · Global Undergraduate Awards</div>
+        <h3>Global Winner — 'Junior Nobel Prize'</h3>
+        <p>First place from 3,567 first-class papers worldwide for multimodal deep learning in brain tumour analysis. First consecutive Global Winner in Engineering in the award's history.</p>
+      </div>
+      <div class="card award-hero">
+        <div class="yr">2024 · President of Ireland Patronage</div>
+        <h3>Global Winner — 'Junior Nobel Prize'</h3>
+        <p>Selected from 3,941 first-class papers for dissertation research on bioresorbable drug-eluting stents with organ-on-a-chip validation.</p>
+      </div>
+    </div>
+
+    <div class="card-flat award-list reveal">
+      <div class="ar"><div class="ay">2025</div><div><h4>Posters in Parliament Finalist</h4><p>One of two university projects from 40+ submissions selected for the British Parliament.</p></div><span class="chipm">National</span></div>
+      <div class="ar"><div class="ay">2024</div><div><h4>Best Innovator Award — Innovation in Medicine Symposium</h4><p>First place among 10+ finalists for bioresorbable stent research.</p></div><span class="chipm">London</span></div>
+      <div class="ar"><div class="ay">2023</div><div><h4>1st Place — MedTech Innovation Programme</h4><p>Cross-university team: biocompatible pressure sensor for post-surgical infection detection.</p></div><span class="chipm">Cross-uni</span></div>
+      <div class="ar"><div class="ay">2023</div><div><h4>Innovator Award — Bright Network</h4><p>Hyperlink under my leadership — most innovative student society in the UK.</p></div><span class="chipm">National</span></div>
+    </div>
+
+    <div class="award-sub reveal">
+      <div class="award-sub-label">University &amp; programme</div>
+      <div class="card-flat award-list compact">
+        <div class="ar"><div class="ay">2025</div><div><h4>Innovation &amp; Development Honours Award — QMUL</h4><p>For founding and leading Cybathlon; selected from 300+ student societies.</p></div><span class="chipm">University</span></div>
+        <div class="ar"><div class="ay">2025</div><div><h4>Small Group with a Big Impact Award — QMUL</h4><p>University-wide recognition for Cybathlon's impact.</p></div><span class="chipm">University</span></div>
+        <div class="ar"><div class="ay">2025</div><div><h4>Runner-Up — Barts Digital Health Hackathon</h4><p>1st Runner-Up among 9 London teams; gamified burnout detection app in 4 hours.</p></div><span class="chipm">London</span></div>
+        <div class="ar"><div class="ay">2024</div><div><h4>Queen Mary Academy SEED Award</h4><p>Top 3 of 72 applicants for Engineering Design Project improvements.</p></div><span class="chipm">University</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="media">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">05</div>
+      <h2>On record.</h2>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">Press</span><h3 class="pillar-title">Coverage</h3></div>
+      </div>
+      <div class="card-flat award-list">
+        <div class="ar"><div class="ay">2025</div><div><a href="https://www.nst.com.my/news/nation/2025/12/1338596/queen-honours-malaysian-student-international-achievements-biomedical" class="ml" target="_blank" rel="noopener">Queen honours Malaysian student for international achievements in biomedical engineering</a><p class="outlet">New Straits Times</p></div></div>
+        <div class="ar"><div class="ay">2025</div><div><a href="https://www.thestar.com.my/news/nation/2025/12/14/perak-lass-earns-global-recognition" class="ml" target="_blank" rel="noopener">Perak lass earns global recognition</a><p class="outlet">The Star Malaysia</p></div></div>
+        <div class="ar"><div class="ay">2025</div><div><a href="https://www.bernama.com/en/news.php?id=2503530/" class="ml" target="_blank" rel="noopener">Queen of Malaysia Commends Balvinder's International Medical Research Feat</a><p class="outlet">Bernama</p></div></div>
+        <div class="ar"><div class="ay">2025</div><div><a href="https://asiasamachar.com/2025/11/30/consistency-over-breakthroughs-the-story-behind-balvinders-historic-junior-nobel-feat/" class="ml" target="_blank" rel="noopener">Consistency over breakthroughs: The story behind Balvinder's historic 'Junior Nobel' feat</a><p class="outlet">Asia Samachar</p></div></div>
+        <div class="ar"><div class="ay">2025</div><div><a href="https://www.sems.qmul.ac.uk/news/7331/biomedical-engineering-student-wins-junior-nobel-prize-for-second-year-in-a-row/" class="ml" target="_blank" rel="noopener">Biomedical Engineering student wins 'Junior Nobel Prize' for second year in a row</a><p class="outlet">Queen Mary University of London</p></div></div>
+        <div class="ar"><div class="ay">2024</div><div><a href="https://www.timeshighereducation.com/student/news/global-undergraduate-awards-2024-winners/" class="ml" target="_blank" rel="noopener">Global Undergraduate Awards 2024 Winners — Engineering</a><p class="outlet">Times Higher Education</p></div></div>
+        <div class="ar"><div class="ay">2024</div><div><a href="https://www.sems.qmul.ac.uk/news/7009/biomedical-engineering-student-wins-junior-nobel-prize/" class="ml" target="_blank" rel="noopener">Biomedical Engineering student wins 'Junior Nobel Prize'</a><p class="outlet">Queen Mary University of London</p></div></div>
+      </div>
+    </div>
+
+    <div class="pillar reveal">
+      <div class="pillar-head">
+        <div><span class="pillar-id">Talks</span><h3 class="pillar-title">Stages &amp; podcasts</h3></div>
+      </div>
+      <div class="talks">
+        <div class="card talk"><span class="chipm">Podcast</span><h4>Kameron's Lab Podcast</h4><p>Guest episode on building an independent path as an international engineer.</p></div>
+        <div class="card talk"><span class="chipm">Panel · International</span><h4>Kameron's Lab Conference</h4><p>Invited panel speaker for an international audience.</p></div>
+        <div class="card talk"><span class="chipm">Keynote · IIT Delhi</span><h4>Hyperloop Keynote</h4><p>Alongside Juan Vicen Balaguer, Founder of Zeleros.</p></div>
+        <div class="card talk"><span class="chipm">Podcast</span><h4>Hyperloop Global Canada</h4><p>Biomedical engineering applications in Hyperloop systems.</p></div>
+        <div class="card talk"><span class="chipm">2× invited</span><h4>MBIOS Subject Talks — QMUL</h4><p>Addressing prospective biomedical engineering students.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="code">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-num">06</div>
+      <h2>Open work.</h2>
+    </div>
+    <div class="code-grid reveal">
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/Brain_Tumour_Digital_Twin" target="_blank" rel="noopener">
+        <div class="lang">Python</div>
+        <h3>Brain Tumour Digital Twin</h3>
+        <p>SAC-based reinforcement learning to explore treatment options for brain tumours.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/Glioma-Digital-Twin-Demo" target="_blank" rel="noopener">
+        <div class="lang">TypeScript</div>
+        <h3>Glioma Digital Twin Demo</h3>
+        <p>Interactive demo for a brain-tumour digital twin with reinforcement learning.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/NPH_Project" target="_blank" rel="noopener">
+        <div class="lang">Research</div>
+        <h3>NPH Project</h3>
+        <p>Code and materials for normal-pressure hydrocephalus ventricular modelling work.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/Brain-Tumour-Segmentation-" target="_blank" rel="noopener">
+        <div class="lang">Python</div>
+        <h3>Brain Tumour Segmentation</h3>
+        <p>Multimodal glioma segmentation pipeline from the EMS700U research project.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/Gesture_Recognition" target="_blank" rel="noopener">
+        <div class="lang">Python</div>
+        <h3>Gesture Recognition</h3>
+        <p>HD-sEMG gesture work developed at ARQ, Queen Mary University of London.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/ecm_robot_navigation" target="_blank" rel="noopener">
+        <div class="lang">C</div>
+        <h3>ECM Robot Navigation</h3>
+        <p>Embedded navigation stack for mobile robot tasks and control.</p>
+        <div class="go">github.com ↗</div>
+      </a>
+    </div>
+    <p class="reveal" style="margin-top:22px;font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.04em">
+      Profile · <a href="https://github.com/BalvinderKaurDhillon" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(142,212,252,.25)">github.com/BalvinderKaurDhillon</a>
+    </p>
+
+    <div class="personal reveal">
+      <div>
+        <div class="label">Off the page</div>
+        <h3>Kuala Lumpur roots.<br>London lab days.</h3>
+      </div>
+      <div>
+        <p>I grew up in Malaysia and work in London. When the models are training overnight, I think about the long tables I grew up around: too much food, everyone's talking, zero small plates.</p>
+        <div class="bits" style="margin-top:16px">
+          <span class="bit">🇲🇾 Malaysia · Perak / KL</span>
+          <span class="bit">🇬🇧 London</span>
+          <span class="bit">Still hunting a proper kopitiam soft-boiled egg in Zone 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="foot-top">
+      <div>
+        <h3>Let's build<br>what comes next.</h3>
+        <p>Open to research collaborations, clinical partnerships, and conversations that move the field forward. From London, with a Malaysian table in mind.</p>
+      </div>
+      <div class="foot-links">
+        <a href="mailto:balvinder.dhillon25@imperial.ac.uk">balvinder.dhillon25@imperial.ac.uk</a>
+        <a href="https://github.com/BalvinderKaurDhillon" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://linkedin.com/in/balvinderkaurdhillon" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://docs.google.com/document/d/1j3WUo64v5INzNhrwQgkVkqhb9xW12my_p14ghONGsM8/preview" target="_blank" rel="noopener">Curriculum Vitae ↗</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© 2026 BALVINDER KAUR DHILLON</p>
+      <p>LONDON · KUALA LUMPUR</p>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>16)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var btn=document.getElementById('menuBtn');
+  var mob=document.getElementById('mobileNav');
+  function setMenu(open){
+    mob.classList.toggle('open',open);
+    document.body.classList.toggle('nav-open',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+    if(open){
+      var first=mob.querySelector('a');
+      if(first)first.focus();
+    }
+  }
+  btn.addEventListener('click',function(){setMenu(!mob.classList.contains('open'))});
+  mob.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){setMenu(false)});
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&mob.classList.contains('open'))setMenu(false);
+  });
+
+  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    document.querySelectorAll('.card').forEach(function(card){
+      card.addEventListener('pointermove',function(e){
+        var r=card.getBoundingClientRect();
+        card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+        card.style.setProperty('--my',(e.clientY-r.top)+'px');
+      });
+    });
+  }
+
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+      });
+    },{threshold:0.1,rootMargin:'0px 0px -24px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
+  }
+
+  /* Patient mesh — sole wow signature */
+  (function(){
+    var c=document.getElementById('meshCanvas');
+    if(!c)return;
+    var ctx=c.getContext('2d');
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var W=0,H=0,nodes=[],edges=[],t=0,running=true,visible=true;
+    var mx=0,my=0,tx=0,ty=0;
+    var isMobile=window.matchMedia('(max-width:720px)').matches;
+    var WAVE_PERIOD=7; /* seconds between activation waves */
+    var WAVE_DURATION=1.8;
+
+    function countTarget(){
+      isMobile=window.matchMedia('(max-width:720px)').matches;
+      return isMobile?18:24;
+    }
+
+    function seedMesh(){
+      nodes=[];edges=[];
+      var n=countTarget();
+      var cx=0.5,cy=0.5;
+      /* fibonacci-ish sphere projection onto soft ellipse (cortical surface intuition) */
+      for(var i=0;i<n;i++){
+        var golden=Math.PI*(3-Math.sqrt(5));
+        var y=1-(i/(n-1))*2;
+        var r=Math.sqrt(Math.max(0,1-y*y));
+        var theta=golden*i;
+        var px=cx+Math.cos(theta)*r*0.36*(0.92+0.08*Math.sin(i*1.7));
+        var py=cy+y*0.38*(0.9+0.1*Math.cos(i*1.3));
+        /* slight inward cluster for a few nodes */
+        if(i%5===0){px=cx+(px-cx)*0.55;py=cy+(py-cy)*0.55}
+        nodes.push({
+          bx:px,by:py,
+          x:px,y:py,
+          phase:Math.random()*Math.PI*2,
+          amp:0.004+Math.random()*0.006,
+          r:1.1+Math.random()*0.7
+        });
+      }
+      /* connect nearest neighbors + a few longer arcs */
+      for(var i=0;i<n;i++){
+        var dists=[];
+        for(var j=0;j<n;j++){
+          if(i===j)continue;
+          var dx=nodes[i].bx-nodes[j].bx,dy=nodes[i].by-nodes[j].by;
+          dists.push({j:j,d:dx*dx+dy*dy});
+        }
+        dists.sort(function(a,b){return a.d-b.d});
+        var k=isMobile?2:3;
+        for(var m=0;m<k;m++){
+          var a=Math.min(i,dists[m].j),b=Math.max(i,dists[m].j);
+          var key=a+'-'+b;
+          if(!edges.some(function(e){return e.key===key})){
+            edges.push({a:a,b:b,key:key,curve:(Math.random()-.5)*0.08});
+          }
+        }
+      }
+      /* geodesic-ish wave path: sort by angle around center */
+      nodes.forEach(function(nd,i){
+        nd.ang=Math.atan2(nd.by-cy,nd.bx-cx);
+        nd.idx=i;
+      });
+    }
+
+    function resize(){
+      var parent=c.parentElement;
+      var rect=parent.getBoundingClientRect();
+      W=rect.width;H=rect.height;
+      if(W<1||H<1)return;
+      c.width=W*dpr;c.height=H*dpr;
+      c.style.width=W+'px';c.style.height=H+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      seedMesh();
+    }
+
+    function waveIntensity(nd,waveT){
+      /* waveT 0..1 along activation cycle */
+      if(waveT<=0||waveT>=1)return 0;
+      var order=(nd.ang+Math.PI)/(Math.PI*2); /* 0..1 around mesh */
+      var front=waveT;
+      var dist=Math.abs(order-front);
+      if(dist>0.5)dist=1-dist;
+      var band=0.14;
+      if(dist>band)return 0;
+      var envelope=Math.sin(waveT*Math.PI); /* fade in/out whole wave */
+      return (1-dist/band)*envelope;
+    }
+
+    function drawStatic(){
+      if(W<1)return;
+      ctx.clearRect(0,0,W,H);
+      var cx=W*0.5,cy=H*0.5,s=Math.min(W,H);
+      /* soft residual center glow */
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,s*0.42);
+      g.addColorStop(0,'rgba(142,212,252,0.07)');
+      g.addColorStop(0.55,'rgba(168,182,255,0.025)');
+      g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g;
+      ctx.beginPath();ctx.arc(cx,cy,s*0.42,0,Math.PI*2);ctx.fill();
+
+      for(var e=0;e<edges.length;e++){
+        var ed=edges[e],na=nodes[ed.a],nb=nodes[ed.b];
+        var x1=na.bx*W,y1=na.by*H,x2=nb.bx*W,y2=nb.by*H;
+        var mx2=(x1+x2)/2+ed.curve*s,my2=(y1+y2)/2+ed.curve*s*0.6;
+        ctx.beginPath();ctx.moveTo(x1,y1);ctx.quadraticCurveTo(mx2,my2,x2,y2);
+        ctx.strokeStyle='rgba(142,212,252,0.07)';
+        ctx.lineWidth=0.8;
+        ctx.stroke();
+      }
+      for(var i=0;i<nodes.length;i++){
+        var nd=nodes[i];
+        ctx.fillStyle='rgba(186,230,253,0.35)';
+        ctx.beginPath();ctx.arc(nd.bx*W,nd.by*H,nd.r,0,Math.PI*2);ctx.fill();
+      }
+    }
+
+    function frame(now){
+      if(!running)return;
+      requestAnimationFrame(frame);
+      if(!visible||reduceMotion)return;
+      if(W<1)return;
+
+      t=(now||performance.now())*0.001;
+      /* parallax ease */
+      mx+=(tx-mx)*0.06;my+=(ty-my)*0.06;
+      var px=isMobile?0:mx*6;
+      var py=isMobile?0:my*6;
+
+      ctx.clearRect(0,0,W,H);
+      var cx=W*0.5+px*0.3,cy=H*0.5+py*0.3,s=Math.min(W,H);
+
+      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,s*0.44);
+      g.addColorStop(0,'rgba(142,212,252,0.08)');
+      g.addColorStop(0.5,'rgba(168,182,255,0.03)');
+      g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g;
+      ctx.beginPath();ctx.arc(cx,cy,s*0.44,0,Math.PI*2);ctx.fill();
+
+      /* wave phase within period */
+      var cycle=t%WAVE_PERIOD;
+      var waveActive=cycle<WAVE_DURATION;
+      var waveT=waveActive?(cycle/WAVE_DURATION):0;
+
+      /* idle drift */
+      for(var i=0;i<nodes.length;i++){
+        var nd=nodes[i];
+        nd.x=nd.bx+Math.sin(t*0.55+nd.phase)*nd.amp+px/W;
+        nd.y=nd.by+Math.cos(t*0.48+nd.phase*1.3)*nd.amp+py/H;
+      }
+
+      for(var e=0;e<edges.length;e++){
+        var ed=edges[e],na=nodes[ed.a],nb=nodes[ed.b];
+        var wi=Math.max(waveIntensity(na,waveT),waveIntensity(nb,waveT));
+        var breath=0.04+0.04*Math.sin(t*0.7+e*0.4);
+        var alpha=breath+wi*0.14;
+        var x1=na.x*W,y1=na.y*H,x2=nb.x*W,y2=nb.y*H;
+        var midx=(x1+x2)/2+ed.curve*s,midy=(y1+y2)/2+ed.curve*s*0.5;
+        ctx.beginPath();ctx.moveTo(x1,y1);ctx.quadraticCurveTo(midx,midy,x2,y2);
+        ctx.strokeStyle='rgba(142,212,252,'+alpha+')';
+        ctx.lineWidth=0.65+wi*0.55;
+        ctx.stroke();
+      }
+
+      for(var i=0;i<nodes.length;i++){
+        var nd=nodes[i];
+        var wi=waveIntensity(nd,waveT);
+        var pulse=0.28+0.12*Math.sin(t*1.1+nd.phase)+wi*0.45;
+        var rr=nd.r*(1+wi*0.9);
+        if(wi>0.2){
+          ctx.beginPath();
+          ctx.arc(nd.x*W,nd.y*H,rr*3.2,0,Math.PI*2);
+          ctx.fillStyle='rgba(142,212,252,'+(wi*0.08)+')';
+          ctx.fill();
+        }
+        ctx.fillStyle='rgba(186,230,253,'+Math.min(0.85,pulse)+')';
+        ctx.beginPath();ctx.arc(nd.x*W,nd.y*H,rr,0,Math.PI*2);ctx.fill();
+      }
+    }
+
+    function onPointer(e){
+      if(isMobile||reduceMotion)return;
+      var rect=c.getBoundingClientRect();
+      var nx=((e.clientX-rect.left)/rect.width-0.5)*2;
+      var ny=((e.clientY-rect.top)/rect.height-0.5)*2;
+      tx=Math.max(-1,Math.min(1,nx));
+      ty=Math.max(-1,Math.min(1,ny));
+    }
+    function onLeave(){tx=0;ty=0}
+
+    resize();
+    if(reduceMotion){
+      drawStatic();
+    } else {
+      requestAnimationFrame(frame);
+      var visual=c.closest('.hero-visual')||c.parentElement;
+      if('IntersectionObserver' in window){
+        var vio=new IntersectionObserver(function(entries){
+          entries.forEach(function(en){visible=en.isIntersecting});
+        },{threshold:0.05});
+        vio.observe(visual);
+      }
+      var heroVis=document.querySelector('.hero-visual');
+      if(heroVis){
+        heroVis.addEventListener('pointermove',onPointer,{passive:true});
+        heroVis.addEventListener('pointerleave',onLeave);
+      }
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize',function(){
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(function(){
+        resize();
+        if(reduceMotion)drawStatic();
+      },120);
+    });
+
+    document.addEventListener('visibilitychange',function(){
+      running=!document.hidden;
+      if(running&&!reduceMotion)requestAnimationFrame(frame);
+    });
+  })();
+})();
+</script>
+</body>
+</html>
