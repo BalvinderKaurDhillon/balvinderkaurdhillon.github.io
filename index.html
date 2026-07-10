@@ -8,7 +8,9 @@
 <meta name="theme-color" content="#0b0c10"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 <style>
 :root{
   --bg:#0b0c10;
@@ -160,9 +162,11 @@ body.nav-open{overflow:hidden}
 /* Hero */
 .hero{
   position:relative;isolation:isolate;
-  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  min-height:100vh;min-height:100dvh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
   padding:110px 0 48px;overflow:hidden;
   color:var(--fg);
+  -webkit-transform:translateZ(0);
 }
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;transform:scale(1.02)}
@@ -247,7 +251,7 @@ body.nav-open{overflow:hidden}
 .flagship .desc{color:var(--muted);line-height:1.8;font-size:1rem;max-width:560px;font-weight:300}
 .flagship .desc + .desc{margin-top:14px}
 .flagship .note{margin-top:20px;font-family:var(--mono);font-size:.66rem;color:var(--faint);letter-spacing:.04em;line-height:1.6}
-.flagship .sci-link{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.7rem;color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);letter-spacing:.04em}
+.flagship .sci-link{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.7rem;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(142,180,255,.35);letter-spacing:.04em}
 .flagship .sci-link:hover{color:var(--accent-soft)}
 .award-sub{margin-top:20px}
 .award-sub-label{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
@@ -309,9 +313,9 @@ body.nav-open{overflow:hidden}
 .pi .role{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.03em}
 .pl{
   display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;font-size:.76rem;font-family:var(--mono);
-  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  border-bottom:1px solid rgba(142,180,255,.35);
 }
-.pl:hover{color:var(--accent-soft);border-bottom-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.pl:hover{color:var(--accent-soft);border-bottom-color:rgba(142,180,255,.55)}
 .stack{display:flex;flex-direction:column;gap:12px}
 .pi-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 
@@ -319,7 +323,7 @@ body.nav-open{overflow:hidden}
 .award-feature{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .award-hero{
   padding:36px;min-height:240px;display:flex;flex-direction:column;
-  border-color:color-mix(in srgb,var(--gold) 35%,transparent)!important;
+  border-color:rgba(224,185,106,.35)!important;
 }
 .award-hero .yr{font-family:var(--mono);font-size:.62rem;color:var(--gold);letter-spacing:.14em;margin-bottom:20px}
 .award-hero h3{font-family:var(--serif);font-size:1.55rem;font-weight:400;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;color:var(--fg)}
@@ -335,9 +339,9 @@ body.nav-open{overflow:hidden}
 /* On record */
 .ml{
   color:var(--accent);text-decoration:none;font-size:.9rem;line-height:1.5;font-weight:400;
-  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  border-bottom:1px solid rgba(142,180,255,.35);
 }
-.ml:hover{color:var(--accent-soft);border-bottom-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.ml:hover{color:var(--accent-soft);border-bottom-color:rgba(142,180,255,.55)}
 .outlet{color:var(--faint);font-size:.78rem;margin-top:6px}
 .talks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 #recognition .card-flat,#media .card-flat{background:var(--glass);border-color:var(--line);color:var(--fg)}
@@ -382,8 +386,13 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 .foot-bot{padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .foot-bot p{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.08em}
 
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .65s ease,transform .65s ease}
-.reveal.in{opacity:1;transform:none}
+/* Always visible — never gate content on JS (iOS Safari / blocked scripts) */
+.reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion: no-preference){
+  html.js-ready .reveal{transition:opacity .55s ease,transform .55s ease}
+  html.js-ready .reveal:not(.in){opacity:.96;transform:translateY(8px)}
+  html.js-ready .reveal.in{opacity:1;transform:none}
+}
 
 @media(max-width:960px){
   .proof{grid-template-columns:repeat(3,1fr);gap:12px 0}
@@ -422,9 +431,31 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   .card{transition:none}
 }
 
+
+/* iOS / mobile performance: huge blurs + backdrop-filter can blank Safari */
+@supports (-webkit-touch-callout: none) {
+  .orb{filter:blur(60px);opacity:.7}
+  .card,.hero-badge,.nav-cta,.btn-ghost,.personal,.card-flat{
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+  nav.scrolled{-webkit-backdrop-filter:saturate(1.1) blur(12px);backdrop-filter:saturate(1.1) blur(12px)}
+}
+@media (max-width:720px){
+  .orb{filter:blur(48px);opacity:.55}
+  .orb-a,.orb-b{max-width:70vw;max-height:70vw}
+  .card,.personal,.card-flat,.flagship-side,.hero-badge{
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+  }
+}
+/* Safer text-wrap fallback */
+.hero h1,.hero-lead{text-wrap:pretty}
+@supports not (text-wrap:pretty){
+  .hero h1,.hero-lead{/* ignore */}
+}
+
 </style>
 </head>
-<body>
+<body style="background:#0b0c10;color:#eef0f5">
 
 <div class="scene" aria-hidden="true">
   <div class="orb orb-a"></div>
@@ -464,7 +495,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img class="hero-img" src="assets/hero-bg-dark.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async"/>
+    <img class="hero-img" src="assets/hero-bg-dark.jpg" alt="" width="1280" height="720" decoding="async" fetchpriority="high" style="background:#0b0c10"/>
   </div>
   <div class="container">
     <div class="hero-center">
@@ -905,278 +936,95 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 </footer>
 </div>
 
+
 <script>
 (function(){
-  var nav=document.getElementById('nav');
-  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>20)}
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-var btn=document.getElementById('menuBtn');
-  var mob=document.getElementById('mobileNav');
-  function setMenu(open){
-    mob.classList.toggle('open',open);
-    document.body.classList.toggle('nav-open',open);
-    btn.setAttribute('aria-expanded',open?'true':'false');
-    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
-    if(open){
-      var first=mob.querySelector('a');
-      if(first)first.focus();
-    }
-  }
-  btn.addEventListener('click',function(){setMenu(!mob.classList.contains('open'))});
-  mob.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click',function(){setMenu(false)});
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&mob.classList.contains('open'))setMenu(false);
-  });
+  try{document.documentElement.classList.add('js-ready')}catch(e){}
 
-  if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-    document.querySelectorAll('.card').forEach(function(card){
-      card.addEventListener('pointermove',function(e){
-        var r=card.getBoundingClientRect();
-        card.style.setProperty('--mx',(e.clientX-r.left)+'px');
-        card.style.setProperty('--my',(e.clientY-r.top)+'px');
-      });
-    });
+  function revealAll(){
+    try{
+      var nodes=document.querySelectorAll('.reveal');
+      for(var i=0;i<nodes.length;i++) nodes[i].classList.add('in');
+    }catch(e){}
   }
 
-  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Always reveal after a short delay as safety net (iOS Safari quirks)
+  setTimeout(revealAll, 1200);
 
-  if(!reduceMotion && 'IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
-      });
-    },{threshold:0.1,rootMargin:'0px 0px -24px 0px'});
-    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-  } else {
-    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
-  }
-
-  /* Patient mesh — sole wow signature */
-  (function(){
-    var c=document.getElementById('meshCanvas');
-    if(!c)return;
-    var ctx=c.getContext('2d');
-    var dpr=Math.min(window.devicePixelRatio||1,2);
-    var W=0,H=0,nodes=[],edges=[],t=0,running=true,visible=true;
-    var mx=0,my=0,tx=0,ty=0;
-    var isMobile=window.matchMedia('(max-width:720px)').matches;
-    var WAVE_PERIOD=7; /* seconds between activation waves */
-    var WAVE_DURATION=1.8;
-
-    function countTarget(){
-      isMobile=window.matchMedia('(max-width:720px)').matches;
-      return isMobile?18:24;
-    }
-
-    function seedMesh(){
-      nodes=[];edges=[];
-      var n=countTarget();
-      var cx=0.5,cy=0.5;
-      /* fibonacci-ish sphere projection onto soft ellipse (cortical surface intuition) */
-      for(var i=0;i<n;i++){
-        var golden=Math.PI*(3-Math.sqrt(5));
-        var y=1-(i/(n-1))*2;
-        var r=Math.sqrt(Math.max(0,1-y*y));
-        var theta=golden*i;
-        var px=cx+Math.cos(theta)*r*0.36*(0.92+0.08*Math.sin(i*1.7));
-        var py=cy+y*0.38*(0.9+0.1*Math.cos(i*1.3));
-        /* slight inward cluster for a few nodes */
-        if(i%5===0){px=cx+(px-cx)*0.55;py=cy+(py-cy)*0.55}
-        nodes.push({
-          bx:px,by:py,
-          x:px,y:py,
-          phase:Math.random()*Math.PI*2,
-          amp:0.004+Math.random()*0.006,
-          r:1.1+Math.random()*0.7
-        });
+  try{
+    var nav=document.getElementById('nav');
+    if(nav){
+      function onScroll(){
+        var y=window.pageYOffset||document.documentElement.scrollTop||0;
+        if(y>20) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
       }
-      /* connect nearest neighbors + a few longer arcs */
-      for(var i=0;i<n;i++){
-        var dists=[];
-        for(var j=0;j<n;j++){
-          if(i===j)continue;
-          var dx=nodes[i].bx-nodes[j].bx,dy=nodes[i].by-nodes[j].by;
-          dists.push({j:j,d:dx*dx+dy*dy});
-        }
-        dists.sort(function(a,b){return a.d-b.d});
-        var k=isMobile?2:3;
-        for(var m=0;m<k;m++){
-          var a=Math.min(i,dists[m].j),b=Math.max(i,dists[m].j);
-          var key=a+'-'+b;
-          if(!edges.some(function(e){return e.key===key})){
-            edges.push({a:a,b:b,key:key,curve:(Math.random()-.5)*0.08});
+      window.addEventListener('scroll',onScroll,{passive:true});
+      onScroll();
+    }
+  }catch(e){}
+
+  try{
+    var btn=document.getElementById('menuBtn');
+    var mob=document.getElementById('mobileNav');
+    if(btn && mob){
+      function setMenu(open){
+        if(open) mob.classList.add('open'); else mob.classList.remove('open');
+        if(open) document.body.classList.add('nav-open'); else document.body.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      btn.addEventListener('click', function(){
+        setMenu(!mob.classList.contains('open'));
+      });
+      var links=mob.querySelectorAll('a');
+      for(var i=0;i<links.length;i++){
+        links[i].addEventListener('click', function(){ setMenu(false); });
+      }
+      document.addEventListener('keydown', function(e){
+        if(e.key==='Escape' && mob.classList.contains('open')) setMenu(false);
+      });
+    }
+  }catch(e){}
+
+  try{
+    var reduceMotion=false;
+    try{ reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+
+    if(!reduceMotion && 'IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(entries){
+        for(var i=0;i<entries.length;i++){
+          if(entries[i].isIntersecting){
+            entries[i].target.classList.add('in');
+            io.unobserve(entries[i].target);
           }
         }
-      }
-      /* geodesic-ish wave path: sort by angle around center */
-      nodes.forEach(function(nd,i){
-        nd.ang=Math.atan2(nd.by-cy,nd.bx-cx);
-        nd.idx=i;
-      });
-    }
-
-    function resize(){
-      var parent=c.parentElement;
-      var rect=parent.getBoundingClientRect();
-      W=rect.width;H=rect.height;
-      if(W<1||H<1)return;
-      c.width=W*dpr;c.height=H*dpr;
-      c.style.width=W+'px';c.style.height=H+'px';
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      seedMesh();
-    }
-
-    function waveIntensity(nd,waveT){
-      /* waveT 0..1 along activation cycle */
-      if(waveT<=0||waveT>=1)return 0;
-      var order=(nd.ang+Math.PI)/(Math.PI*2); /* 0..1 around mesh */
-      var front=waveT;
-      var dist=Math.abs(order-front);
-      if(dist>0.5)dist=1-dist;
-      var band=0.14;
-      if(dist>band)return 0;
-      var envelope=Math.sin(waveT*Math.PI); /* fade in/out whole wave */
-      return (1-dist/band)*envelope;
-    }
-
-    function drawStatic(){
-      if(W<1)return;
-      ctx.clearRect(0,0,W,H);
-      var cx=W*0.5,cy=H*0.5,s=Math.min(W,H);
-      /* soft residual center glow */
-      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,s*0.42);
-      g.addColorStop(0,'rgba(142,212,252,0.07)');
-      g.addColorStop(0.55,'rgba(168,182,255,0.025)');
-      g.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=g;
-      ctx.beginPath();ctx.arc(cx,cy,s*0.42,0,Math.PI*2);ctx.fill();
-
-      for(var e=0;e<edges.length;e++){
-        var ed=edges[e],na=nodes[ed.a],nb=nodes[ed.b];
-        var x1=na.bx*W,y1=na.by*H,x2=nb.bx*W,y2=nb.by*H;
-        var mx2=(x1+x2)/2+ed.curve*s,my2=(y1+y2)/2+ed.curve*s*0.6;
-        ctx.beginPath();ctx.moveTo(x1,y1);ctx.quadraticCurveTo(mx2,my2,x2,y2);
-        ctx.strokeStyle='rgba(142,212,252,0.07)';
-        ctx.lineWidth=0.8;
-        ctx.stroke();
-      }
-      for(var i=0;i<nodes.length;i++){
-        var nd=nodes[i];
-        ctx.fillStyle='rgba(186,230,253,0.35)';
-        ctx.beginPath();ctx.arc(nd.bx*W,nd.by*H,nd.r,0,Math.PI*2);ctx.fill();
-      }
-    }
-
-    function frame(now){
-      if(!running)return;
-      requestAnimationFrame(frame);
-      if(!visible||reduceMotion)return;
-      if(W<1)return;
-
-      t=(now||performance.now())*0.001;
-      /* parallax ease */
-      mx+=(tx-mx)*0.06;my+=(ty-my)*0.06;
-      var px=isMobile?0:mx*6;
-      var py=isMobile?0:my*6;
-
-      ctx.clearRect(0,0,W,H);
-      var cx=W*0.5+px*0.3,cy=H*0.5+py*0.3,s=Math.min(W,H);
-
-      var g=ctx.createRadialGradient(cx,cy,0,cx,cy,s*0.44);
-      g.addColorStop(0,'rgba(142,212,252,0.08)');
-      g.addColorStop(0.5,'rgba(168,182,255,0.03)');
-      g.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.fillStyle=g;
-      ctx.beginPath();ctx.arc(cx,cy,s*0.44,0,Math.PI*2);ctx.fill();
-
-      /* wave phase within period */
-      var cycle=t%WAVE_PERIOD;
-      var waveActive=cycle<WAVE_DURATION;
-      var waveT=waveActive?(cycle/WAVE_DURATION):0;
-
-      /* idle drift */
-      for(var i=0;i<nodes.length;i++){
-        var nd=nodes[i];
-        nd.x=nd.bx+Math.sin(t*0.55+nd.phase)*nd.amp+px/W;
-        nd.y=nd.by+Math.cos(t*0.48+nd.phase*1.3)*nd.amp+py/H;
-      }
-
-      for(var e=0;e<edges.length;e++){
-        var ed=edges[e],na=nodes[ed.a],nb=nodes[ed.b];
-        var wi=Math.max(waveIntensity(na,waveT),waveIntensity(nb,waveT));
-        var breath=0.04+0.04*Math.sin(t*0.7+e*0.4);
-        var alpha=breath+wi*0.14;
-        var x1=na.x*W,y1=na.y*H,x2=nb.x*W,y2=nb.y*H;
-        var midx=(x1+x2)/2+ed.curve*s,midy=(y1+y2)/2+ed.curve*s*0.5;
-        ctx.beginPath();ctx.moveTo(x1,y1);ctx.quadraticCurveTo(midx,midy,x2,y2);
-        ctx.strokeStyle='rgba(142,212,252,'+alpha+')';
-        ctx.lineWidth=0.65+wi*0.55;
-        ctx.stroke();
-      }
-
-      for(var i=0;i<nodes.length;i++){
-        var nd=nodes[i];
-        var wi=waveIntensity(nd,waveT);
-        var pulse=0.28+0.12*Math.sin(t*1.1+nd.phase)+wi*0.45;
-        var rr=nd.r*(1+wi*0.9);
-        if(wi>0.2){
-          ctx.beginPath();
-          ctx.arc(nd.x*W,nd.y*H,rr*3.2,0,Math.PI*2);
-          ctx.fillStyle='rgba(142,212,252,'+(wi*0.08)+')';
-          ctx.fill();
-        }
-        ctx.fillStyle='rgba(186,230,253,'+Math.min(0.85,pulse)+')';
-        ctx.beginPath();ctx.arc(nd.x*W,nd.y*H,rr,0,Math.PI*2);ctx.fill();
-      }
-    }
-
-    function onPointer(e){
-      if(isMobile||reduceMotion)return;
-      var rect=c.getBoundingClientRect();
-      var nx=((e.clientX-rect.left)/rect.width-0.5)*2;
-      var ny=((e.clientY-rect.top)/rect.height-0.5)*2;
-      tx=Math.max(-1,Math.min(1,nx));
-      ty=Math.max(-1,Math.min(1,ny));
-    }
-    function onLeave(){tx=0;ty=0}
-
-    resize();
-    if(reduceMotion){
-      drawStatic();
+      },{threshold:0.08, rootMargin:'0px 0px -12px 0px'});
+      var revs=document.querySelectorAll('.reveal');
+      for(var j=0;j<revs.length;j++) io.observe(revs[j]);
     } else {
-      requestAnimationFrame(frame);
-      var visual=c.closest('.hero-visual')||c.parentElement;
-      if('IntersectionObserver' in window){
-        var vio=new IntersectionObserver(function(entries){
-          entries.forEach(function(en){visible=en.isIntersecting});
-        },{threshold:0.05});
-        vio.observe(visual);
-      }
-      var heroVis=document.querySelector('.hero-visual');
-      if(heroVis){
-        heroVis.addEventListener('pointermove',onPointer,{passive:true});
-        heroVis.addEventListener('pointerleave',onLeave);
+      revealAll();
+    }
+  }catch(e){
+    revealAll();
+  }
+
+  try{
+    if(window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      var cards=document.querySelectorAll('.card');
+      for(var c=0;c<cards.length;c++){
+        (function(card){
+          card.addEventListener('pointermove', function(e){
+            var r=card.getBoundingClientRect();
+            card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+            card.style.setProperty('--my',(e.clientY-r.top)+'px');
+          });
+        })(cards[c]);
       }
     }
-
-    var resizeTimer;
-    window.addEventListener('resize',function(){
-      clearTimeout(resizeTimer);
-      resizeTimer=setTimeout(function(){
-        resize();
-        if(reduceMotion)drawStatic();
-      },120);
-    });
-
-    document.addEventListener('visibilitychange',function(){
-      running=!document.hidden;
-      if(running&&!reduceMotion)requestAnimationFrame(frame);
-    });
-  })();
+  }catch(e){}
 })();
 </script>
+
 </body>
 </html>
