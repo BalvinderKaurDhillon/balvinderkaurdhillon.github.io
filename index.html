@@ -109,7 +109,10 @@ button{font:inherit;border:none;background:none;cursor:pointer;color:inherit}
   .card:hover{border-color:rgba(61,111,212,.2);transform:translateY(-2px);box-shadow:var(--shadow-hover);background:var(--glass-strong)}
   .card:hover::before{opacity:1}
 }
-.card-flat{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card-flat{
+  background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
 
 /* Nav — frosted glass throughout */
 nav{
@@ -197,8 +200,8 @@ body.nav-open{overflow:hidden}
   color:var(--fg);text-wrap:balance;
 }
 .hero-lead{
-  font-size:clamp(1.02rem,1.6vw,1.15rem);color:var(--muted);max-width:34rem;
-  line-height:1.7;font-weight:300;margin:0 auto 36px;
+  font-size:clamp(1.02rem,1.6vw,1.15rem);color:var(--muted);max-width:38rem;
+  line-height:1.65;font-weight:300;margin:0 auto 36px;text-wrap:balance;
 }
 .hero-lead em{font-family:var(--serif);font-style:italic;color:var(--fg);font-weight:400}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
@@ -256,7 +259,7 @@ body.nav-open{overflow:hidden}
   background:rgba(61,111,212,.08);border:1px solid rgba(61,111,212,.2);
   font-family:var(--mono);font-size:.64rem;color:var(--accent);letter-spacing:.06em;
 }
-.flagship-side{padding:24px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.55);align-self:stretch}
+.flagship-side{padding:24px;border-radius:16px;border:1px solid var(--line);background:var(--glass-strong);align-self:stretch}
 .flagship-side .sl{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
 .flagship-side ul{list-style:none;display:flex;flex-direction:column;gap:12px}
 .flagship-side li{font-size:.88rem;color:var(--muted);padding-left:16px;position:relative;line-height:1.4}
@@ -270,7 +273,7 @@ body.nav-open{overflow:hidden}
 .vcard .desc{color:var(--muted);font-size:.9rem;line-height:1.75;flex:1;font-weight:300}
 .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px}
 .mini-stats.cols-2{grid-template-columns:1fr 1fr}
-.mini-stat{padding:14px 10px;text-align:center;border-radius:12px;background:rgba(255,255,255,.65);border:1px solid var(--line)}
+.mini-stat{padding:14px 10px;text-align:center;border-radius:12px;background:var(--glass-strong);border:1px solid var(--line)}
 .mini-stat .n{font-family:var(--serif);font-size:1.25rem;line-height:1;color:var(--fg)}
 .mini-stat .l{font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em;line-height:1.4}
 .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
@@ -302,29 +305,42 @@ body.nav-open{overflow:hidden}
 .pi .authors{color:var(--faint);font-size:.84rem;margin-bottom:6px}
 .pi .authors strong{color:var(--muted);font-weight:600}
 .pi .role{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.03em}
-.pl{display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;font-size:.76rem;font-family:var(--mono);border-bottom:1px solid rgba(61,111,212,.28)}
-.pl:hover{color:#2a56b0}
+.pl{
+  display:inline-block;margin-top:10px;color:var(--accent);text-decoration:none;font-size:.76rem;font-family:var(--mono);
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+}
+.pl:hover{color:var(--accent-soft);border-bottom-color:color-mix(in srgb,var(--accent) 55%,transparent)}
 .stack{display:flex;flex-direction:column;gap:12px}
 .pi-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 
 /* Recognition */
 .award-feature{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.award-hero{padding:36px;border-color:rgba(166,124,45,.22)!important;min-height:240px;display:flex;flex-direction:column}
+.award-hero{
+  padding:36px;min-height:240px;display:flex;flex-direction:column;
+  border-color:color-mix(in srgb,var(--gold) 35%,transparent)!important;
+}
 .award-hero .yr{font-family:var(--mono);font-size:.62rem;color:var(--gold);letter-spacing:.14em;margin-bottom:20px}
-.award-hero h3{font-family:var(--serif);font-size:1.55rem;font-weight:400;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px}
+.award-hero h3{font-family:var(--serif);font-size:1.55rem;font-weight:400;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;color:var(--fg)}
 .award-hero p{color:var(--muted);font-size:.9rem;line-height:1.7;font-weight:300;margin-top:auto}
-.award-list{padding:12px 32px}
+.award-list{padding:12px 32px;background:var(--glass);color:var(--fg)}
+.award-list .ar h4{color:var(--fg)}
 .ar{display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line)}
 .ar:last-child{border-bottom:none}
 .ay{font-family:var(--mono);font-size:.7rem;color:var(--faint);padding-top:3px;letter-spacing:.06em}
-.ar h4{font-size:.95rem;font-weight:500;margin-bottom:6px;letter-spacing:-.01em}
+.ar h4{font-size:.95rem;font-weight:500;margin-bottom:6px;letter-spacing:-.01em;color:var(--fg)}
 .ar p{color:var(--muted);font-size:.84rem;line-height:1.6;font-weight:300}
 
 /* On record */
-.ml{color:var(--accent);text-decoration:none;font-size:.9rem;line-height:1.5;border-bottom:1px solid rgba(61,111,212,.25);font-weight:400}
-.ml:hover{color:#2a56b0}
+.ml{
+  color:var(--accent);text-decoration:none;font-size:.9rem;line-height:1.5;font-weight:400;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+}
+.ml:hover{color:var(--accent-soft);border-bottom-color:color-mix(in srgb,var(--accent) 55%,transparent)}
 .outlet{color:var(--faint);font-size:.78rem;margin-top:6px}
 .talks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#recognition .card-flat,#media .card-flat{background:var(--glass);border-color:var(--line);color:var(--fg)}
+#recognition .ar,#media .ar{border-bottom-color:var(--line)}
+#media .ml{color:var(--accent)}
 
 /* Code */
 .code-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -347,14 +363,14 @@ body.nav-open{overflow:hidden}
 .personal .bits{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .personal .bit{
   font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.04em;
-  padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.7);
+  padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--glass-strong);
 }
 .talk{padding:24px}
 .talk h4{font-size:.95rem;font-weight:500;margin:14px 0 10px;line-height:1.35;letter-spacing:-.01em}
 .talk p{color:var(--muted);font-size:.82rem;line-height:1.65;font-weight:300}
 
 /* Footer */
-footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.45))}
+footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--bg) 70%,var(--fg) 4%))}
 .foot-top{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;margin-bottom:56px;align-items:end}
 .foot-top h3{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:400;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
 .foot-top p{color:var(--muted);font-size:.95rem;line-height:1.7;max-width:400px;font-weight:300}
@@ -460,10 +476,24 @@ html[data-theme="dark"] .hero-bg::after{
 }
 html[data-theme="dark"] .flagship-side,
 html[data-theme="dark"] .mini-stat{background:rgba(255,255,255,.04)}
-html[data-theme="dark"] .personal .bit{background:rgba(255,255,255,.04)}
+html[data-theme="dark"] .personal .bit{background:rgba(255,255,255,.05)}
+html[data-theme="dark"] .card-flat,
+html[data-theme="dark"] #recognition .card-flat,
+html[data-theme="dark"] #media .card-flat{
+  background:var(--glass);border-color:var(--line);color:var(--fg);
+}
+html[data-theme="dark"] .award-hero{border-color:color-mix(in srgb,var(--gold) 40%,transparent)!important}
+html[data-theme="dark"] .award-list .ar h4,
+html[data-theme="dark"] .ar h4,
+html[data-theme="dark"] .award-hero h3{color:var(--fg)}
+html[data-theme="dark"] .ar p,
+html[data-theme="dark"] .award-hero p,
+html[data-theme="dark"] .outlet{color:var(--muted)}
+html[data-theme="dark"] .ay{color:var(--faint)}
+html[data-theme="dark"] .ml{color:var(--accent)}
+html[data-theme="dark"] .ml:hover{color:var(--accent-soft)}
 html[data-theme="dark"] footer{background:linear-gradient(180deg,transparent,rgba(0,0,0,.25))}
 html[data-theme="dark"] ::selection{background:rgba(142,180,255,.28);color:#fff}
-html[data-theme="dark"] .theme-color-meta{color-scheme:dark}
 
 /* Hero dual backgrounds */
 .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;transform:scale(1.02);transition:opacity .45s ease}
@@ -555,8 +585,7 @@ html[data-theme="dark"]{color-scheme:dark}
       <div class="hero-badge"><span class="live-dot" aria-hidden="true"></span> Founder, Ocora · Imperial College London</div>
       <h1>Balvinder Kaur<br><span class="grad">Dhillon</span></h1>
       <p class="hero-lead">
-        Building the future of <em>computational medicine</em> —
-        from patient-specific models of brain disease to ventures that put those models into clinical hands.
+        Building the future of <em>personalised medicine</em> — computational models of brain disease, designed for the individual patient.
       </p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#ocora">View Ocora</a>
