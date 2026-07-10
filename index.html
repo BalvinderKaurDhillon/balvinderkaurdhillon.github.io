@@ -122,10 +122,11 @@ nav.scrolled{
   backdrop-filter:blur(20px) saturate(1.15);-webkit-backdrop-filter:blur(20px) saturate(1.15);
   box-shadow:0 8px 32px -20px rgba(20,27,45,.12);
 }
-.nav-inner{max-width:var(--max);margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
 .logo{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;color:var(--muted);text-decoration:none;transition:color .3s}
 .logo:hover{color:var(--fg)}
-.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links{display:flex;align-items:center;gap:28px;margin-left:auto}
 .nav-links a{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
 .nav-cta{
@@ -160,13 +161,9 @@ body.nav-open{overflow:hidden}
   padding:110px 0 48px;overflow:hidden;
   color:var(--fg);
 }
-.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-bg img{
-  width:100%;height:100%;object-fit:cover;object-position:center 62%;
-  transform:scale(1.02);
-}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .hero-bg::after{
-  content:'';position:absolute;inset:0;
+  content:'';position:absolute;inset:0;z-index:1;
   background:
     linear-gradient(180deg,rgba(244,245,248,.5) 0%,rgba(244,245,248,.12) 32%,rgba(244,245,248,.05) 58%,rgba(244,245,248,.55) 88%,var(--bg) 100%),
     radial-gradient(ellipse 70% 55% at 50% 38%,rgba(255,255,255,.5),transparent 70%);
@@ -384,6 +381,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 }
 @media(max-width:720px){
   .nav-links{display:none}
+  .nav-actions{margin-left:auto}
   .menu-btn{display:flex;align-items:center;justify-content:center}
   .section{padding:80px 0}
   .container{padding:0 22px}
@@ -405,7 +403,105 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   .live-dot{animation:none}
   .card{transition:none}
 }
+
+/* Dark theme */
+html[data-theme="dark"]{
+  --bg:#0b0c10;
+  --bg-soft:#12141a;
+  --fg:#eef0f5;
+  --muted:#9aa3b5;
+  --faint:#6b7385;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --accent:#8eb4ff;
+  --accent-soft:#a8c4ff;
+  --accent-2:#a8b6ff;
+  --accent-3:#c4b5fd;
+  --gold:#e0b96a;
+  --gold-soft:#e8c478;
+  --glass:rgba(18,20,28,.72);
+  --glass-strong:rgba(24,27,36,.88);
+  --shadow:0 20px 50px -28px rgba(0,0,0,.55);
+  --shadow-hover:0 28px 60px -24px rgba(0,0,0,.65);
+}
+html[data-theme="dark"] .orb-a{
+  background:radial-gradient(circle,rgba(100,140,220,.16),transparent 68%);
+}
+html[data-theme="dark"] .orb-b{
+  background:radial-gradient(circle,rgba(80,100,160,.12),transparent 70%);
+}
+html[data-theme="dark"] .vignette{
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.04),transparent 55%),
+    linear-gradient(180deg,transparent 0%,rgba(11,12,16,.5) 100%);
+}
+html[data-theme="dark"] .grad{
+  background:linear-gradient(135deg,#8eb4ff,#a8b6ff 50%,#c4b5fd);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+html[data-theme="dark"] .chip{border-color:rgba(142,180,255,.28);color:var(--accent);background:rgba(142,180,255,.1)}
+html[data-theme="dark"] .chipg{border-color:rgba(224,185,106,.3);color:var(--gold);background:rgba(224,185,106,.1)}
+html[data-theme="dark"] .btn-primary{background:#eef0f5;color:#0b0c10;box-shadow:0 16px 40px -18px rgba(142,180,255,.35)}
+html[data-theme="dark"] .btn-primary:hover{background:#fff}
+html[data-theme="dark"] .btn-ghost{background:rgba(255,255,255,.06);color:var(--muted);border-color:var(--line-strong)}
+html[data-theme="dark"] .btn-ghost:hover{background:rgba(255,255,255,.1);color:var(--fg)}
+html[data-theme="dark"] nav.scrolled{
+  background:rgba(11,12,16,.82);
+  box-shadow:0 8px 32px -20px rgba(0,0,0,.5);
+}
+html[data-theme="dark"] .nav-cta{background:rgba(255,255,255,.06)}
+html[data-theme="dark"] .nav-cta:hover{background:rgba(255,255,255,.1)}
+html[data-theme="dark"] .mobile-nav{background:rgba(11,12,16,.97)}
+html[data-theme="dark"] .hero-badge{background:rgba(18,20,28,.7);color:var(--muted)}
+html[data-theme="dark"] .hero-bg::after{
+  background:
+    linear-gradient(180deg,rgba(11,12,16,.55) 0%,rgba(11,12,16,.2) 32%,rgba(11,12,16,.15) 58%,rgba(11,12,16,.7) 88%,var(--bg) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 38%,rgba(80,110,180,.12),transparent 70%);
+}
+html[data-theme="dark"] .flagship-side,
+html[data-theme="dark"] .mini-stat{background:rgba(255,255,255,.04)}
+html[data-theme="dark"] .personal .bit{background:rgba(255,255,255,.04)}
+html[data-theme="dark"] footer{background:linear-gradient(180deg,transparent,rgba(0,0,0,.25))}
+html[data-theme="dark"] ::selection{background:rgba(142,180,255,.28);color:#fff}
+html[data-theme="dark"] .theme-color-meta{color-scheme:dark}
+
+/* Hero dual backgrounds */
+.hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;transform:scale(1.02);transition:opacity .45s ease}
+.hero-bg .hero-img-light{opacity:1}
+.hero-bg .hero-img-dark{opacity:0}
+html[data-theme="dark"] .hero-bg .hero-img-light{opacity:0}
+html[data-theme="dark"] .hero-bg .hero-img-dark{opacity:1}
+
+/* Theme toggle */
+.theme-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:999px;padding:0;
+  border:1px solid var(--line-strong);color:var(--muted);
+  background:rgba(255,255,255,.45);backdrop-filter:blur(10px);
+  transition:background .2s,color .2s,border-color .2s,box-shadow .2s;
+  flex-shrink:0;
+}
+.theme-btn:hover{color:var(--fg);border-color:rgba(20,27,45,.22);background:#fff;box-shadow:0 6px 20px -10px rgba(20,27,45,.2)}
+html[data-theme="dark"] .theme-btn{background:rgba(255,255,255,.06)}
+html[data-theme="dark"] .theme-btn:hover{background:rgba(255,255,255,.1);border-color:var(--line-strong);box-shadow:none}
+.theme-btn svg{width:18px;height:18px}
+.theme-btn .icon-moon{display:none}
+html[data-theme="dark"] .theme-btn .icon-sun{display:none}
+html[data-theme="dark"] .theme-btn .icon-moon{display:block}
+html{color-scheme:light}
+html[data-theme="dark"]{color-scheme:dark}
+
 </style>
+<script data-theme-init>
+(function(){
+  try{
+    var k='bkd-theme';
+    var s=localStorage.getItem(k);
+    var t=s||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    document.documentElement.setAttribute('data-theme',t);
+  }catch(e){document.documentElement.setAttribute('data-theme','light')}
+})();
+</script>
 </head>
 <body>
 
@@ -428,9 +524,15 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
       <a href="#media">Press</a>
       <a class="nav-cta" href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
     </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
+    <div class="nav-actions">
+      <button type="button" class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"/></svg>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
@@ -445,7 +547,8 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img src="assets/hero-bg.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async"/>
+    <img class="hero-img hero-img-light" src="assets/hero-bg.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async"/>
+    <img class="hero-img hero-img-dark" src="assets/hero-bg-dark.jpg" alt="" width="1280" height="720" decoding="async"/>
   </div>
   <div class="container">
     <div class="hero-center">
@@ -853,12 +956,12 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
     <div class="personal reveal">
       <div>
         <div class="label">Off the page</div>
-        <h3>Kuala Lumpur roots.<br>London lab days.</h3>
+        <h3>Teluk Intan roots.<br>London lab days.</h3>
       </div>
       <div>
         <p>I grew up in Malaysia and work in London. When the models are training overnight, I think about the long tables I grew up around: too much food, everyone's talking, zero small plates.</p>
         <div class="bits" style="margin-top:16px">
-          <span class="bit">🇲🇾 Malaysia · Perak / KL</span>
+          <span class="bit">🇲🇾 Malaysia · Teluk Intan, Perak</span>
           <span class="bit">🇬🇧 London</span>
           <span class="bit">Still hunting a proper kopitiam soft-boiled egg in Zone 1</span>
         </div>
@@ -883,7 +986,7 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
     </div>
     <div class="foot-bot">
       <p>© 2026 BALVINDER KAUR DHILLON</p>
-      <p>LONDON · KUALA LUMPUR</p>
+      <p>LONDON · TELUK INTAN</p>
     </div>
   </div>
 </footer>
@@ -895,6 +998,31 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   function onScroll(){nav.classList.toggle('scrolled',window.scrollY>20)}
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
+
+  /* Theme: light / dark */
+  (function(){
+    var KEY='bkd-theme';
+    var btn=document.getElementById('themeBtn');
+    var meta=document.querySelector('meta[name="theme-color"]');
+    function current(){return document.documentElement.getAttribute('data-theme')||'light'}
+    function apply(t){
+      document.documentElement.setAttribute('data-theme',t);
+      try{localStorage.setItem(KEY,t)}catch(e){}
+      if(meta)meta.setAttribute('content',t==='dark'?'#0b0c10':'#f4f5f8');
+      if(btn){
+        btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');
+        btn.setAttribute('title',t==='dark'?'Light mode':'Dark mode');
+      }
+    }
+    if(btn){
+      btn.addEventListener('click',function(){
+        apply(current()==='dark'?'light':'dark');
+      });
+    }
+    // sync if system preference changes and user has no explicit choice? keep stored preference
+    apply(current());
+  })();
+
 
   var btn=document.getElementById('menuBtn');
   var mob=document.getElementById('mobileNav');
