@@ -42,7 +42,7 @@ button{font:inherit;border:none;background:none;cursor:pointer;color:inherit}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:rgba(142,212,252,.25);border-radius:3px}
 
-/* Atmosphere: solid bg + one soft orb + vignette */
+/* Atmosphere under hero (dark sections) */
 .scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(140px)}
 .orb-a{
@@ -97,17 +97,34 @@ button{font:inherit;border:none;background:none;cursor:pointer;color:inherit}
 }
 .card-flat{background:rgba(255,255,255,.015);border:1px solid var(--line);border-radius:var(--radius)}
 
-/* Nav */
+/* Nav — light over ethereal hero, dark after scroll */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  border-bottom:1px solid transparent;transition:all .3s;
+  border-bottom:1px solid transparent;transition:all .35s ease;
 }
+nav.hero-light .logo{color:#3d4659}
+nav.hero-light .nav-links a{color:#6b7385}
+nav.hero-light .nav-links a:hover{color:#141b2d}
+nav.hero-light .nav-cta{
+  border-color:rgba(20,27,45,.14);color:#141b2d;background:rgba(255,255,255,.45);
+  backdrop-filter:blur(10px);
+}
+nav.hero-light .nav-cta:hover{background:rgba(255,255,255,.75);box-shadow:0 8px 28px -12px rgba(20,27,45,.25)}
+nav.hero-light .menu-btn{color:#3d4659}
 nav.scrolled{
   border-color:var(--line);background:rgba(5,5,7,.82);
   backdrop-filter:blur(20px) saturate(1.15);-webkit-backdrop-filter:blur(20px) saturate(1.15);
 }
+nav.scrolled .logo{color:var(--muted)}
+nav.scrolled .nav-links a{color:var(--faint)}
+nav.scrolled .nav-links a:hover{color:var(--fg)}
+nav.scrolled .nav-cta{
+  border:1px solid rgba(142,212,252,.35);color:var(--accent);background:transparent;
+}
+nav.scrolled .nav-cta:hover{background:rgba(142,212,252,.08);box-shadow:0 0 32px -10px rgba(142,212,252,.5)}
+nav.scrolled .menu-btn{color:var(--muted)}
 .nav-inner{max-width:var(--max);margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;color:var(--muted);text-decoration:none}
+.logo{font-family:var(--mono);font-size:.76rem;letter-spacing:.2em;color:var(--muted);text-decoration:none;transition:color .3s}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
@@ -134,61 +151,111 @@ body.nav-open{overflow:hidden}
   min-height:44px;
 }
 
-/* Hero */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
-.hero-top{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+/* Hero — ethereal full-bleed first screen (Parva-style atmosphere) */
+.hero{
+  position:relative;isolation:isolate;
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:110px 0 48px;overflow:hidden;
+  color:#141b2d;
 }
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(142,212,252,.5);animation:ping 2.4s infinite}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  transform:scale(1.02);
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(248,249,252,.55) 0%,rgba(248,249,252,.18) 28%,rgba(248,249,252,.08) 55%,rgba(248,249,252,.55) 82%,rgba(5,5,7,.92) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 38%,rgba(255,255,255,.55),transparent 70%);
+}
+.hero .container{position:relative;z-index:1;width:100%}
+.hero-center{
+  max-width:820px;margin:0 auto;text-align:center;
+  padding:clamp(24px,6vh,64px) 12px 0;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  color:#3d4659;
+  padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(20,27,45,.08);
+  box-shadow:0 8px 32px -16px rgba(20,27,45,.18);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.hero-badge .live-dot{background:#2f6fed;box-shadow:0 0 0 0 rgba(47,111,237,.45)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(142,212,252,.5);animation:ping 2.4s infinite;flex-shrink:0}
 @keyframes ping{
-  0%{box-shadow:0 0 0 0 rgba(142,212,252,.45)}
-  70%{box-shadow:0 0 0 10px rgba(142,212,252,0)}
-  100%{box-shadow:0 0 0 0 rgba(142,212,252,0)}
+  0%{box-shadow:0 0 0 0 rgba(47,111,237,.4)}
+  70%{box-shadow:0 0 0 10px rgba(47,111,237,0)}
+  100%{box-shadow:0 0 0 0 rgba(47,111,237,0)}
 }
 .hero h1{
-  font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,7.5vw,5.6rem);
-  line-height:.98;letter-spacing:-.035em;margin-bottom:28px;
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(3.2rem,7.2vw,5.4rem);
+  line-height:1.02;letter-spacing:-.03em;margin-bottom:22px;
+  color:#141b2d;
+  text-wrap:balance;
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg,#1e3a5f,#4a6fa5 45%,#6b8cce);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero-lead{
-  font-size:clamp(1.05rem,1.8vw,1.2rem);color:var(--muted);max-width:480px;
-  line-height:1.7;font-weight:300;margin-bottom:40px;
+  font-size:clamp(1.02rem,1.6vw,1.15rem);color:#4a5568;max-width:34rem;
+  line-height:1.7;font-weight:300;margin:0 auto 36px;
 }
-.hero-lead em{font-family:var(--serif);font-style:italic;color:var(--fg);font-weight:400}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-lead em{font-family:var(--serif);font-style:italic;color:#141b2d;font-weight:400}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:12px;
-  font-size:.875rem;font-weight:500;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
-  min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;
+  font-size:.9rem;font-weight:500;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s,color .2s;
+  min-height:48px;
 }
 .btn:hover{transform:translateY(-1px)}
-.btn-primary{background:linear-gradient(135deg,#8ed4fc,#a8b6ff 55%,#c4b5fd);color:#050507;box-shadow:0 12px 36px -14px rgba(142,212,252,.55)}
-.btn-ghost{border:1px solid var(--line-strong);color:var(--muted)}
-.btn-ghost:hover{color:var(--fg);border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.03)}
-
-.hero-visual{position:relative;aspect-ratio:1;max-width:360px;margin-left:auto;width:100%}
-.viz-frame{
-  position:absolute;inset:0;border-radius:50%;overflow:hidden;
-  border:1px solid rgba(255,255,255,.07);
-  background:
-    radial-gradient(circle at 38% 32%,rgba(142,212,252,.08),transparent 52%),
-    radial-gradient(circle at 68% 72%,rgba(168,182,255,.05),transparent 48%),
-    linear-gradient(160deg,rgba(255,255,255,.02),transparent);
-  box-shadow:0 48px 100px -48px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.05);
+.btn-primary{
+  background:#141b2d;color:#f5f6fa;
+  box-shadow:0 16px 40px -18px rgba(20,27,45,.55);
 }
-#meshCanvas{position:absolute;inset:0;width:100%;height:100%}
-.viz-ring{position:absolute;inset:-5%;border-radius:50%;border:1px solid rgba(255,255,255,.035);pointer-events:none}
+.btn-primary:hover{background:#1c2540;box-shadow:0 20px 48px -16px rgba(20,27,45,.6)}
+.btn-ghost{
+  border:1px solid rgba(20,27,45,.14);color:#3d4659;
+  background:rgba(255,255,255,.45);backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{color:#141b2d;border-color:rgba(20,27,45,.28);background:rgba(255,255,255,.72)}
 
-/* Proof strip */
+/* section buttons keep original dark-theme styles */
+.section .btn-primary,.flagship .btn-primary,.cta-block .btn-primary{
+  background:linear-gradient(135deg,#8ed4fc,#a8b6ff 55%,#c4b5fd);color:#050507;
+  border-radius:12px;box-shadow:0 12px 36px -14px rgba(142,212,252,.55);
+}
+.section .btn-ghost,.cta-block .btn-ghost{
+  border:1px solid var(--line-strong);color:var(--muted);background:transparent;border-radius:12px;
+  backdrop-filter:none;
+}
+.section .btn-ghost:hover{color:var(--fg);border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.03)}
+
+/* Proof strip on light hero */
 .proof{
-  margin-top:72px;padding-top:36px;border-top:1px solid var(--line);
+  margin-top:clamp(48px,8vh,80px);padding:28px 8px 8px;
+  border-top:1px solid rgba(20,27,45,.08);
   display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  max-width:960px;margin-left:auto;margin-right:auto;
 }
-.proof-item{padding:8px 20px 8px 0;border-right:1px solid var(--line)}
-.proof-item:last-child{border-right:none;padding-right:0}
-.proof-n{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);line-height:1;letter-spacing:-.03em;margin-bottom:10px}
-.proof-l{font-family:var(--mono);font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;line-height:1.45}
+.proof-item{padding:8px 16px;border-right:1px solid rgba(20,27,45,.08);text-align:center}
+.proof-item:last-child{border-right:none}
+.proof-n{
+  font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.25rem);line-height:1;
+  letter-spacing:-.03em;margin-bottom:10px;color:#141b2d;
+}
+.proof-n.grad{
+  background:linear-gradient(135deg,#1e3a5f,#4a6fa5 50%,#6b8cce);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.proof-l{font-family:var(--mono);font-size:.6rem;color:#6b7385;text-transform:uppercase;letter-spacing:.1em;line-height:1.45}
 
 /* Flagship */
 .flagship{padding:40px;display:grid;grid-template-columns:1.5fr .7fr;gap:40px}
@@ -322,8 +389,10 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px}
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:960px){
-  .hero-top{grid-template-columns:1fr;gap:40px}
-  .hero-visual{max-width:280px;margin:0 auto}
+  .proof{grid-template-columns:repeat(3,1fr);gap:12px 0}
+  .proof-item:nth-child(3){border-right:none}
+  .proof-item:nth-child(n+4){border-top:1px solid rgba(20,27,45,.08);padding-top:16px;margin-top:4px}
+  .proof-item:nth-child(5){grid-column:2}
   .proof{grid-template-columns:repeat(3,1fr);gap:20px}
   .proof-item{border-right:none;padding:0;border-bottom:1px solid var(--line);padding-bottom:16px}
   .flagship{grid-template-columns:1fr}
@@ -341,9 +410,14 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px}
   .ar{grid-template-columns:48px 1fr;gap:12px}
   .ar .chipm{display:none}
   .mini-stats{grid-template-columns:1fr 1fr}
-  .hero{padding:100px 0 64px}
-  .flagship{padding:32px 24px}
+  .hero{padding:96px 0 40px}
+  .hero-cta{flex-direction:column;align-items:stretch}
   .hero-cta .btn{width:100%}
+  .proof{grid-template-columns:1fr 1fr}
+  .proof-item{border-right:none;border-bottom:1px solid rgba(20,27,45,.08);padding:14px 8px}
+  .proof-item:nth-child(n+4){border-top:none;margin-top:0;padding-top:14px}
+  .proof-item:nth-child(5){grid-column:1 / -1}
+  .flagship{padding:32px 24px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -388,24 +462,21 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px}
   <a href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
 </div>
 
-<section class="hero">
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="assets/hero-bg.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async"/>
+  </div>
   <div class="container">
-    <div class="hero-top">
-      <div>
-        <div class="hero-badge"><span class="live-dot" aria-hidden="true"></span> Founder, Ocora · Imperial College London</div>
-        <h1>Balvinder<br>Kaur <span class="grad">Dhillon</span></h1>
-        <p class="hero-lead">
-          Building the future of <em>computational medicine</em> —
-          from patient-specific models of brain disease to ventures that put those models into clinical hands.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#ocora">View Ocora</a>
-          <a class="btn btn-ghost" href="mailto:balvinder.dhillon25@imperial.ac.uk">Get in touch</a>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="viz-ring"></div>
-        <div class="viz-frame"><canvas id="meshCanvas"></canvas></div>
+    <div class="hero-center">
+      <div class="hero-badge"><span class="live-dot" aria-hidden="true"></span> Founder, Ocora · Imperial College London</div>
+      <h1>Balvinder Kaur<br><span class="grad">Dhillon</span></h1>
+      <p class="hero-lead">
+        Building the future of <em>computational medicine</em> —
+        from patient-specific models of brain disease to ventures that put those models into clinical hands.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#ocora">View Ocora</a>
+        <a class="btn btn-ghost" href="mailto:balvinder.dhillon25@imperial.ac.uk">Get in touch</a>
       </div>
     </div>
 
@@ -840,8 +911,17 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px}
 <script>
 (function(){
   var nav=document.getElementById('nav');
-  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>16)}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var heroEl=document.getElementById('hero');
+  function onScroll(){
+    var y=window.scrollY||0;
+    var heroH=heroEl?heroEl.offsetHeight:window.innerHeight;
+    var pastHero=y>Math.max(48,heroH*0.55);
+    nav.classList.toggle('scrolled',pastHero);
+    nav.classList.toggle('hero-light',!pastHero);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
 
   var btn=document.getElementById('menuBtn');
   var mob=document.getElementById('mobileNav');
