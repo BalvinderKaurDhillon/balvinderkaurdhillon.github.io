@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Balvinder Kaur Dhillon</title>
-<meta name="description" content="Balvinder Kaur Dhillon — biomedical engineer, researcher, and builder at Imperial College London."/>
+<meta name="description" content="Balvinder Kaur Dhillon — biomedical engineer, researcher, and builder."/>
 <meta name="theme-color" content="#081116"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -445,10 +445,30 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
 @supports not (text-wrap:pretty){
   .hero h1,.hero-lead{/* ignore */}
 }
+body[data-page="home"] #build,
+body[data-page="home"] #research,
+body[data-page="home"] #writing,
+body[data-page="home"] #recognition,
+body[data-page="home"] #media,
+body[data-page="home"] #code{display:none}
+body[data-page="research"] #build,
+body[data-page="research"] #recognition,
+body[data-page="research"] #media,
+body[data-page="research"] #code{display:none}
+body[data-page="work"] #research,
+body[data-page="work"] #writing{display:none}
+body[data-page="home"] .hero{min-height:78vh}
+body[data-page="research"] .hero,
+body[data-page="work"] .hero{min-height:56vh}
+body[data-page="research"] .proof,
+body[data-page="work"] .proof{display:none}
+body[data-page="research"] #research,
+body[data-page="work"] #build{border-top:0;padding-top:34px}
+.hero-badge{display:none}
 
 </style>
 </head>
-<body style="background:#081116;color:#eef0f5">
+<body data-page="home" style="background:#081116;color:#eef0f5">
 
 <div class="scene" aria-hidden="true">
   <div class="orb orb-a"></div>
@@ -461,12 +481,9 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   <div class="nav-inner">
     <a href="#top" class="logo">BKD</a>
     <div class="nav-links">
-      <a href="#build">Work</a>
-      <a href="#research">Research</a>
-      <a href="#writing">Writing</a>
-      <a href="#recognition">Recognition</a>
-      <a href="#code">Code</a>
-      <a href="#media">Press</a>
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="work.html">Work</a>
       <a class="nav-cta" href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
     </div>
     <div class="nav-actions">
@@ -477,23 +494,20 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#build">Work</a>
-  <a href="#research">Research</a>
-  <a href="#writing">Writing</a>
-  <a href="#recognition">Recognition</a>
-  <a href="#code">Code</a>
-  <a href="#media">Press</a>
+  <a href="index.html">Home</a>
+  <a href="research.html">Research</a>
+  <a href="work.html">Work</a>
   <a href="mailto:balvinder.dhillon25@imperial.ac.uk">Contact</a>
 </div>
 
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-center">
-      <div class="hero-badge">London · Malaysia · Imperial College London</div>
+      <div class="hero-badge">London · Malaysia · Biomedical engineering</div>
       <h1>Balvinder Kaur<br><span class="grad">Dhillon</span></h1>
   <p class="hero-lead">Biomedical engineer, researcher, and builder.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#build">Selected work</a>
+        <a class="btn btn-primary" href="work.html">Selected work</a>
         <a class="btn btn-ghost" href="mailto:balvinder.dhillon25@imperial.ac.uk">Get in touch</a>
       </div>
     </div>
@@ -570,12 +584,6 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
           <h3>Tumour Genomic Biomarker Modelling</h3>
           <p>Automated biomarker extraction from tumour genomic data with probabilistic estimates for precision oncology stratification.</p>
           <div class="meta">Internal · in development · 2025</div>
-        </div>
-        <div class="card rcard">
-          <span class="chip">PI-GCN · NPH</span>
-          <h3>Ventricular Modelling for NPH</h3>
-          <p>Physics-informed graph networks on NPH ventricular meshes — patient-specific growth tensors and recovery of pre-disease geometry.</p>
-          <div class="meta">MSc · Imperial College London · <a href="https://github.com/BalvinderKaurDhillon/NPH_Project" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(142,180,255,.3);text-decoration:none">GitHub</a></div>
         </div>
         <div class="card rcard">
           <span class="chip">Deep learning · Imaging</span>
@@ -655,7 +663,8 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">03</div>
-      <h2>The written record.</h2>
+      <h2>Selected publications.</h2>
+      <a class="sci-link" href="https://scholar.google.com/citations?user=hevfLBQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
     </div>
 
     <div class="pub-group reveal">
@@ -663,6 +672,15 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
         <div><span class="pillar-id">I</span><h3 class="pillar-title">Journal papers</h3></div>
       </div>
       <div class="stack">
+        <div class="card pi">
+          <div class="pi-inner"><div class="dot"></div><div class="flex1">
+            <div class="pi-chips"><span class="chip">Smart Medicine</span><span class="chipm">Brain biomechanics</span></div>
+            <h4>Patient-Informed Biomechanical Modeling Reveals Mechanical Mechanism of Brain Damage in Idiopathic Normal Pressure Hydrocephalus</h4>
+            <p class="authors">Darvishi V., Del Giovane M., David M.C.B., <strong>Dhillon B.</strong>, et al. (2026)</p>
+            <p class="role">Patient-informed brain modelling and mechanical analysis</p>
+            <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/smmd.70060" class="pl" target="_blank" rel="noopener">Read paper ↗</a>
+          </div></div>
+        </div>
         <div class="card pi">
           <div class="pi-inner"><div class="dot"></div><div class="flex1">
             <div class="pi-chips"><span class="chip">IEEE MetroXraine</span><span class="chipm">Prosthetics</span></div>
@@ -834,12 +852,6 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
         <p>Interactive demo for a brain-tumour digital twin with reinforcement learning.</p>
         <div class="go">github.com ↗</div>
       </a>
-      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/NPH_Project" target="_blank" rel="noopener">
-        <div class="lang">Research</div>
-        <h3>NPH Project</h3>
-        <p>Code and materials for normal-pressure hydrocephalus ventricular modelling work.</p>
-        <div class="go">github.com ↗</div>
-      </a>
       <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/Brain-Tumour-Segmentation-" target="_blank" rel="noopener">
         <div class="lang">Python</div>
         <h3>Brain Tumour Segmentation</h3>
@@ -852,12 +864,6 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
         <p>HD-sEMG gesture work developed at ARQ, Queen Mary University of London.</p>
         <div class="go">github.com ↗</div>
       </a>
-      <a class="card code-card" href="https://github.com/BalvinderKaurDhillon/ecm_robot_navigation" target="_blank" rel="noopener">
-        <div class="lang">C</div>
-        <h3>ECM Robot Navigation</h3>
-        <p>Embedded navigation stack for mobile robot tasks and control.</p>
-        <div class="go">github.com ↗</div>
-      </a>
     </div>
     <p class="reveal" style="margin-top:22px;font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.04em">
       Profile · <a href="https://github.com/BalvinderKaurDhillon" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(142,212,252,.25)">github.com/BalvinderKaurDhillon</a>
@@ -866,14 +872,14 @@ footer{border-top:1px solid var(--line);padding:80px 0 48px;background:linear-gr
     <div class="personal reveal">
       <div>
         <div class="label">Off the page</div>
-        <h3>Teluk Intan roots.<br>London lab days.</h3>
+        <h3>Teluk Intan roots.<br>London for the past 5 years.</h3>
       </div>
       <div>
-        <p>I grew up in Malaysia and work in London. When the models are training overnight, I think about the long tables I grew up around: too much food, everyone's talking, zero small plates.</p>
+        <p>I grew up in Malaysia and have lived in London for the past 5 years. When the models are training overnight, I think about the long tables I grew up around: too much food, everyone's talking, zero small plates.</p>
         <div class="bits" style="margin-top:16px">
           <span class="bit">🇲🇾 Malaysia · Teluk Intan, Perak</span>
           <span class="bit">🇬🇧 London</span>
-          <span class="bit">Still hunting a proper kopitiam soft-boiled egg in Zone 1</span>
+          <span class="bit">Still hunting for the perfect wan tan mee in Zone 1</span>
         </div>
       </div>
     </div>
